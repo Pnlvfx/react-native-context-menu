@@ -1,7 +1,7 @@
 {
   "name": "@simonegauli/react-native-context-menu",
   "version": "0.1.0",
-  "description": "iOS",
+  "description": "Native context menus for React Native — built on Fabric with a composable slot-based API",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -39,23 +39,31 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
     "update": "yarn upgrade-interactive",
-    "maestro": "node tools/maestro.ts"
+    "maestro": "node tools/maestro.ts",
+    "release": "node tools/release.ts"
   },
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "context-menu",
+    "fabric",
+    "new-architecture",
+    "uicontextmenuinteraction",
+    "long-press",
+    "3d-touch",
+    "slot-based"
   ],
   "repository": {
     "type": "git",
-    "url": "git+.git"
+    "url": "git+https://github.com/Pnlvfx/react-native-context-menu.git"
   },
-  "author": " <> ()",
+  "author": "Simone Gauli <simonegauli@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "/issues"
+    "url": "https://github.com/Pnlvfx/react-native-context-menu/issues"
   },
-  "homepage": "#readme",
+  "homepage": "https://github.com/Pnlvfx/react-native-context-menu#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
