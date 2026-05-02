@@ -1,6 +1,6 @@
 {
   "name": "@simonegauli/react-native-context-menu",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Native context menus for React Native — built on Fabric with a composable slot-based API",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -35,7 +35,6 @@
     "example": "yarn workspace react-native-context-menu-example",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
-    "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
     "update": "yarn upgrade-interactive",
