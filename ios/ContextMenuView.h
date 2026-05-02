@@ -6,7 +6,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContextMenuView : RCTViewComponentView
+@interface ContextMenuView : RCTViewComponentView <UIContextMenuInteractionDelegate>
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1,0 +1,36 @@
+appId: contextmenu.example
+---
+- launchApp:
+    clearState: true
+
+# Trigger shows on screen
+- assertVisible: "Hold me"
+
+# Long press opens the context menu
+- longPressOn: "Hold me"
+
+# All three items are visible
+- assertVisible: "Share"
+- assertVisible: "Copy"
+- assertVisible: "Delete"
+
+# Tap Share and verify callback fires
+- tapOn: "Share"
+- assertVisible: "Share pressed"
+- tapOn: "OK"
+
+# Long press again and tap Copy
+- longPressOn: "Hold me"
+- assertVisible: "Share"
+- assertVisible: "Copy"
+- assertVisible: "Delete"
+- tapOn: "Copy"
+- assertVisible: "Copy pressed"
+- tapOn: "OK"
+
+# Long press again and tap Delete
+- longPressOn: "Hold me"
+- assertVisible: "Delete"
+- tapOn: "Delete"
+- assertVisible: "Delete pressed"
+- tapOn: "OK"
