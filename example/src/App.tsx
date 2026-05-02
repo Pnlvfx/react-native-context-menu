@@ -1,46 +1,52 @@
 import { StrictMode } from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import {
+  GestureHandlerRootView,
+  Pressable,
+} from 'react-native-gesture-handler';
 import * as ContextMenu from '@simonegauli/react-native-context-menu';
 
 export default function App() {
   return (
     <StrictMode>
-      <View style={styles.container}>
-        <ContextMenu.Root>
-          <ContextMenu.Trigger>
-            <Pressable
-              style={({ pressed }) => [
-                styles.box,
-                pressed && styles.boxPressed,
-              ]}
-              onPress={() => Alert.alert('Button pressed')}
-            >
-              <Text style={styles.label}>Tap or hold</Text>
-            </Pressable>
-          </ContextMenu.Trigger>
-          <ContextMenu.Content>
-            <ContextMenu.Item
-              id="share"
-              title="Share"
-              systemImage="square.and.arrow.up"
-              onPress={() => Alert.alert('Share pressed')}
-            />
-            <ContextMenu.Item
-              id="copy"
-              title="Copy"
-              systemImage="doc.on.doc"
-              onPress={() => Alert.alert('Copy pressed')}
-            />
-            <ContextMenu.Item
-              id="delete"
-              title="Delete"
-              systemImage="trash"
-              destructive
-              onPress={() => Alert.alert('Delete pressed')}
-            />
-          </ContextMenu.Content>
-        </ContextMenu.Root>
-      </View>
+      <GestureHandlerRootView style={styles.gestureRoot}>
+        <View style={styles.container}>
+          <ContextMenu.Root>
+            <ContextMenu.Trigger>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.box,
+                  pressed && styles.boxPressed,
+                ]}
+                onPress={() => Alert.alert('Button pressed')}
+              >
+                <Text style={styles.label}>Tap or hold</Text>
+              </Pressable>
+            </ContextMenu.Trigger>
+            <ContextMenu.Content>
+              <ContextMenu.Item
+                id="share"
+                title="Share"
+                systemImage="square.and.arrow.up"
+                onPress={() => Alert.alert('Share pressed')}
+              />
+              <ContextMenu.Item
+                id="copy"
+                title="Copy"
+                systemImage="doc.on.doc"
+                onPress={() => Alert.alert('Copy pressed')}
+              />
+              <ContextMenu.Item
+                id="delete"
+                title="Delete"
+                systemImage="trash"
+                destructive
+                onPress={() => Alert.alert('Delete pressed')}
+              />
+            </ContextMenu.Content>
+          </ContextMenu.Root>
+        </View>
+      </GestureHandlerRootView>
     </StrictMode>
   );
 }
@@ -54,6 +60,9 @@ const blob = {
 } as const;
 
 const styles = StyleSheet.create({
+  gestureRoot: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#1a1a2e',

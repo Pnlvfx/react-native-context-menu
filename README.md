@@ -51,50 +51,62 @@ cd ios pod install
 
 ## Usage
 
+> **⚠️ Important:** React Native's built-in `Pressable` has a known press/long-press race condition — `onPress` may fire even when the user intends a long-press to open the context menu. Use [`react-native-gesture-handler`](https://docs.swmansion.com/react-native-gesture-handler/)'s `Pressable` instead, which correctly cancels the tap when a long-press is detected. Wrap your app (or at least the screen) in `GestureHandlerRootView`.
+
+```bash
+yarn add react-native-gesture-handler
+```
+
 ```tsx
 import { StrictMode } from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import {
+  GestureHandlerRootView,
+  Pressable,
+} from 'react-native-gesture-handler';
 import * as ContextMenu from '@simonegauli/react-native-context-menu';
 
 export default function App() {
   return (
     <StrictMode>
-      <View style={styles.container}>
-        <ContextMenu.Root>
-          <ContextMenu.Trigger>
-            <Pressable
-              style={({ pressed }) => [
-                styles.box,
-                pressed && styles.boxPressed,
-              ]}
-              onPress={() => Alert.alert('Button pressed')}
-            >
-              <Text style={styles.label}>Tap or hold</Text>
-            </Pressable>
-          </ContextMenu.Trigger>
-          <ContextMenu.Content>
-            <ContextMenu.Item
-              id="share"
-              title="Share"
-              systemImage="square.and.arrow.up"
-              onPress={() => Alert.alert('Share pressed')}
-            />
-            <ContextMenu.Item
-              id="copy"
-              title="Copy"
-              systemImage="doc.on.doc"
-              onPress={() => Alert.alert('Copy pressed')}
-            />
-            <ContextMenu.Item
-              id="delete"
-              title="Delete"
-              systemImage="trash"
-              destructive
-              onPress={() => Alert.alert('Delete pressed')}
-            />
-          </ContextMenu.Content>
-        </ContextMenu.Root>
-      </View>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <ContextMenu.Root>
+            <ContextMenu.Trigger>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.box,
+                  pressed && styles.boxPressed,
+                ]}
+                onPress={() => Alert.alert('Button pressed')}
+              >
+                <Text style={styles.label}>Tap or hold</Text>
+              </Pressable>
+            </ContextMenu.Trigger>
+            <ContextMenu.Content>
+              <ContextMenu.Item
+                id="share"
+                title="Share"
+                systemImage="square.and.arrow.up"
+                onPress={() => Alert.alert('Share pressed')}
+              />
+              <ContextMenu.Item
+                id="copy"
+                title="Copy"
+                systemImage="doc.on.doc"
+                onPress={() => Alert.alert('Copy pressed')}
+              />
+              <ContextMenu.Item
+                id="delete"
+                title="Delete"
+                systemImage="trash"
+                destructive
+                onPress={() => Alert.alert('Delete pressed')}
+              />
+            </ContextMenu.Content>
+          </ContextMenu.Root>
+        </View>
+      </GestureHandlerRootView>
     </StrictMode>
   );
 }
