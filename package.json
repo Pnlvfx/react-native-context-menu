@@ -1,6 +1,6 @@
 {
   "name": "@simonegauli/react-native-context-menu",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Native context menus for React Native — built on Fabric with a composable slot-based API",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
