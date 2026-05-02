@@ -6,7 +6,6 @@ export interface ContextMenuItemProps {
   id: string;
   destructive?: boolean;
   disabled?: boolean;
-  systemImage?: string;
   onPress?: () => void;
   children?: ReactNode;
 }
@@ -15,15 +14,22 @@ export const Item = ({
   id,
   destructive = false,
   disabled = false,
-  systemImage = '',
   onPress,
   children,
 }: ContextMenuItemProps) => {
   const [title, setTitle] = useState('');
+  const [icon, setIcon] = useState('');
   const { registerItem, unregisterItem } = useContextMenu();
 
   useEffect(() => {
-    registerItem({ id, title, destructive, disabled, systemImage, onPress });
+    registerItem({
+      id,
+      title,
+      destructive,
+      disabled,
+      systemImage: icon,
+      onPress,
+    });
 
     return () => {
       unregisterItem(id);
@@ -33,11 +39,11 @@ export const Item = ({
     title,
     destructive,
     disabled,
-    systemImage,
+    icon,
     registerItem,
     unregisterItem,
     onPress,
   ]);
 
-  return <ItemContext value={{ setTitle }}>{children}</ItemContext>;
+  return <ItemContext value={{ setTitle, setIcon }}>{children}</ItemContext>;
 };

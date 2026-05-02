@@ -42,7 +42,7 @@ yarn add @simonegauli/react-native-context-menu
 Then install the CocoaPods:
 
 ```bash
-cd ios pod install
+cd ios && pod install
 ```
 
 > **Note:** Android and Web currently throw a runtime error ("not supported on this platform"). Platform-level stubs will ship in a future release.
@@ -74,24 +74,34 @@ export default function App() {
           <ContextMenu.Root>
             <ContextMenu.Trigger>
               <Pressable
-                style={({ pressed }) => [
-                  styles.box,
-                  pressed && styles.boxPressed,
-                ]}
+                style={styles.box}
                 onPress={() => Alert.alert('Button pressed')}
               >
                 <Text style={styles.label}>Tap or hold</Text>
               </Pressable>
             </ContextMenu.Trigger>
             <ContextMenu.Content>
-              <ContextMenu.Item id="share" systemImage="square.and.arrow.up" onPress={() => Alert.alert('Share pressed')}>
+              <ContextMenu.Item
+                id="share"
+                onPress={() => Alert.alert('Share pressed')}
+              >
                 <ContextMenu.ItemTitle>Share</ContextMenu.ItemTitle>
+                <ContextMenu.ItemIcon ios="square.and.arrow.up" />
               </ContextMenu.Item>
-              <ContextMenu.Item id="copy" systemImage="doc.on.doc" onPress={() => Alert.alert('Copy pressed')}>
+              <ContextMenu.Item
+                id="copy"
+                onPress={() => Alert.alert('Copy pressed')}
+              >
                 <ContextMenu.ItemTitle>Copy</ContextMenu.ItemTitle>
+                <ContextMenu.ItemIcon ios="doc.on.doc" />
               </ContextMenu.Item>
-              <ContextMenu.Item id="delete" systemImage="trash" destructive onPress={() => Alert.alert('Delete pressed')}>
+              <ContextMenu.Item
+                id="delete"
+                destructive
+                onPress={() => Alert.alert('Delete pressed')}
+              >
                 <ContextMenu.ItemTitle>Delete</ContextMenu.ItemTitle>
+                <ContextMenu.ItemIcon ios="trash" />
               </ContextMenu.Item>
             </ContextMenu.Content>
           </ContextMenu.Root>
@@ -158,22 +168,30 @@ Declares the menu items. Only renders `Item` components — other children are a
 
 A single menu action. Must contain an `ItemTitle` child.
 
-| Prop          | Type         | Default      | Description                                                                                                                                                   |
-| ------------- | ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`          | `string`     | — (required) | Unique identifier for this item                                                                                                                               |
-| `children`    | `ReactNode`  | — (required) | Must include an `ItemTitle`                                                                                                                                   |
-| `destructive` | `boolean`    | `false`      | Renders the item with destructive (red) styling                                                                                                               |
-| `disabled`    | `boolean`    | `false`      | Greys-out the item and makes it non-interactive                                                                                                               |
-| `systemImage` | `string`     | `''`         | SF Symbol name for the item icon (e.g., `"trash"`, `"square.and.arrow.up"`). See [SF Symbols](https://developer.apple.com/sf-symbols/) for the full catalogue |
-| `onPress`     | `() => void` | `undefined`  | Callback invoked when the user taps the menu item                                                                                                             |
+| Prop          | Type         | Default      | Description                                     |
+| ------------- | ------------ | ------------ | ----------------------------------------------- |
+| `id`          | `string`     | — (required) | Unique identifier for this item                 |
+| `children`    | `ReactNode`  | — (required) | Must include an `ItemTitle`                     |
+| `destructive` | `boolean`    | `false`      | Renders the item with destructive (red) styling |
+| `disabled`    | `boolean`    | `false`      | Greys-out the item and makes it non-interactive |
+| `onPress`     | `() => void` | `undefined`  | Callback invoked when the user taps the item    |
 
 ### `ContextMenu.ItemTitle`
 
-Sets the label for the parent `Item`. Must be a direct child of `Item`. Children must be a plain string — passing any other type throws an error at runtime.
+Sets the label for the parent `Item`. Must be a direct child of `Item`. Children must be a plain string.
 
-| Prop       | Type     | Required | Description                    |
-| ---------- | -------- | -------- | ------------------------------ |
-| `children` | `string` | Yes      | Label displayed in the menu    |
+| Prop       | Type     | Required | Description                 |
+| ---------- | -------- | -------- | --------------------------- |
+| `children` | `string` | Yes      | Label displayed in the menu |
+
+### `ContextMenu.ItemIcon`
+
+Attaches an icon to the parent `Item`. Must be a direct child of `Item`. Uses typed SF Symbol names from [`sf-symbols-typescript`](https://github.com/nandorojo/sf-symbols-typescript) for full autocomplete.
+
+| Prop              | Type       | Platform | Description                                                                                     |
+| ----------------- | ---------- | -------- | ----------------------------------------------------------------------------------------------- |
+| `ios`             | `SFSymbol` | iOS      | SF Symbol name (e.g. `'trash'`, `'square.and.arrow.up'`). Autocompleted from the full catalogue |
+| `androidIconName` | `string`   | Android  | Android resource drawable name                                                                  |
 
 ---
 

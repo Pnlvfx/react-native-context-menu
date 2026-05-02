@@ -26,25 +26,25 @@ export default function App() {
             <ContextMenu.Content>
               <ContextMenu.Item
                 id="share"
-                systemImage="square.and.arrow.up"
                 onPress={() => Alert.alert('Share pressed')}
               >
                 <ContextMenu.ItemTitle>{'Share'}</ContextMenu.ItemTitle>
+                <ContextMenu.ItemIcon ios="square.and.arrow.up" />
               </ContextMenu.Item>
               <ContextMenu.Item
                 id="copy"
-                systemImage="doc.on.doc"
                 onPress={() => Alert.alert('Copy pressed')}
               >
                 <ContextMenu.ItemTitle>{'Copy'}</ContextMenu.ItemTitle>
+                <ContextMenu.ItemIcon ios="doc.on.doc" />
               </ContextMenu.Item>
               <ContextMenu.Item
                 id="delete"
-                systemImage="trash"
                 destructive
                 onPress={() => Alert.alert('Delete pressed')}
               >
                 <ContextMenu.ItemTitle>{'Delete'}</ContextMenu.ItemTitle>
+                <ContextMenu.ItemIcon ios="trash" />
               </ContextMenu.Item>
             </ContextMenu.Content>
           </ContextMenu.Root>

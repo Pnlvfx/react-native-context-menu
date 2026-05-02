@@ -14,6 +14,10 @@ export const ItemTitle = ({ children }: ContextMenuItemTitleProps) => {
 
   useEffect(() => {
     setTitle(children);
+
+    return () => {
+      setTitle('');
+    };
   }, [children, setTitle]);
 
   return null;
