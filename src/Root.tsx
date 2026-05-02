@@ -1,8 +1,4 @@
-import type { ReactNode } from 'react';
-
-type RootProps = {
-  children: ReactNode;
-};
+import type { RootProps } from './Root.native';
 
 export const Root = (_props: RootProps): never => {
   throw new Error(
