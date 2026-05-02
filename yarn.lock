@@ -9120,6 +9120,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-ft-flow: "npm:^3.0.11"
     eslint-plugin-prettier: "npm:^5.5.5"
+    execa: "npm:^9.6.1"
     jest: "npm:^30.3.0"
     lefthook: "npm:^2.1.6"
     prettier: "npm:^3.8.3"

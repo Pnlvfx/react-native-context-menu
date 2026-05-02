@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useContextMenu } from './ContextMenuContext';
 
 type ItemProps = {
@@ -18,12 +18,7 @@ export const Item = ({
   systemImage = '',
   onPress,
 }: ItemProps) => {
-  const { registerItem, unregisterItem, updateHandler } = useContextMenu();
-  const onPressRef = useRef(onPress);
-
-  useLayoutEffect(() => {
-    onPressRef.current = onPress;
-  });
+  const { registerItem, unregisterItem } = useContextMenu();
 
   useEffect(() => {
     registerItem({
@@ -32,16 +27,19 @@ export const Item = ({
       destructive,
       disabled,
       systemImage,
-      onPress: () => onPressRef.current?.(),
+      onPress,
     });
     return () => unregisterItem(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, title, destructive, disabled, systemImage]);
-
-  useEffect(() => {
-    updateHandler(id, () => onPressRef.current?.());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [
+    id,
+    title,
+    destructive,
+    disabled,
+    systemImage,
+    registerItem,
+    unregisterItem,
+    onPress,
+  ]);
 
   return undefined;
 };

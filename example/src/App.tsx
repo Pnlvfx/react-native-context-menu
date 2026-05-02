@@ -1,18 +1,11 @@
 import { StrictMode } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
-import { ContextMenu } from 'react-native-context-menu';
+import * as ContextMenu from 'react-native-context-menu';
 
 export default function App() {
   return (
     <StrictMode>
       <View style={styles.container}>
-        <View style={styles.background}>
-          <View style={styles.blob1} />
-          <View style={styles.blob2} />
-          <View style={styles.blob3} />
-          <View style={styles.blob4} />
-          <View style={styles.blob5} />
-        </View>
         <ContextMenu.Root>
           <ContextMenu.Trigger>
             <Pressable
@@ -53,12 +46,12 @@ export default function App() {
 }
 
 const blob = {
-  position: 'absolute' as const,
+  position: 'absolute',
   width: 200,
   height: 200,
   borderRadius: 100,
   opacity: 0.6,
-};
+} as const;
 
 const styles = StyleSheet.create({
   container: {
@@ -66,9 +59,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a1a2e',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  background: {
-    ...StyleSheet.absoluteFill,
   },
   blob1: { ...blob, backgroundColor: '#FF6B6B', top: 60, left: 30 },
   blob2: { ...blob, backgroundColor: '#4ECDC4', top: 200, right: 20 },
@@ -85,12 +75,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  boxPressed: {
-    backgroundColor: 'rgba(255,255,255,0.3)',
-  },
-  label: {
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: 16,
-  },
+  boxPressed: { backgroundColor: 'rgba(255,255,255,0.3)' },
+  label: { color: '#fff', fontWeight: '600', fontSize: 16 },
 });

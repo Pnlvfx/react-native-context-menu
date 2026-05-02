@@ -1,11 +1,4 @@
-import { Content } from './Content';
-import { Item } from './Item';
-import { Root } from './Root';
-import { Trigger } from './Trigger';
-
-export const ContextMenu = {
-  Root,
-  Trigger,
-  Content,
-  Item,
-};
+export * from './Content';
+export * from './Item';
+export * from './Root';
+export * from './Trigger';

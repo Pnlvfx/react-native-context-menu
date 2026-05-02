@@ -38,7 +38,8 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
-    "update": "yarn upgrade-interactive"
+    "update": "yarn upgrade-interactive",
+    "maestro": "node tools/maestro.ts"
   },
   "keywords": [
     "react-native",
@@ -75,6 +76,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
+    "execa": "^9.6.1",
     "jest": "^30.3.0",
     "lefthook": "^2.1.6",
     "prettier": "^3.8.3",
