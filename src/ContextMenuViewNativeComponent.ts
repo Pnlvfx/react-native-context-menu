@@ -1,6 +1,6 @@
 import type { ViewProps } from 'react-native';
-import { codegenNativeComponent } from 'react-native';
 import type { CodegenTypes } from 'react-native';
+import { codegenNativeComponent } from 'react-native';
 
 type MenuItemPressEvent = Readonly<{
   id: string;

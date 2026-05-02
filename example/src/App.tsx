@@ -1,48 +1,54 @@
+import { StrictMode } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ContextMenu } from 'react-native-context-menu';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.background}>
-        <View style={styles.blob1} />
-        <View style={styles.blob2} />
-        <View style={styles.blob3} />
-        <View style={styles.blob4} />
-        <View style={styles.blob5} />
+    <StrictMode>
+      <View style={styles.container}>
+        <View style={styles.background}>
+          <View style={styles.blob1} />
+          <View style={styles.blob2} />
+          <View style={styles.blob3} />
+          <View style={styles.blob4} />
+          <View style={styles.blob5} />
+        </View>
+        <ContextMenu.Root>
+          <ContextMenu.Trigger>
+            <Pressable
+              style={({ pressed }) => [
+                styles.box,
+                pressed && styles.boxPressed,
+              ]}
+              onPress={() => Alert.alert('Button pressed')}
+            >
+              <Text style={styles.label}>Tap or hold</Text>
+            </Pressable>
+          </ContextMenu.Trigger>
+          <ContextMenu.Content>
+            <ContextMenu.Item
+              id="share"
+              title="Share"
+              systemImage="square.and.arrow.up"
+              onPress={() => Alert.alert('Share pressed')}
+            />
+            <ContextMenu.Item
+              id="copy"
+              title="Copy"
+              systemImage="doc.on.doc"
+              onPress={() => Alert.alert('Copy pressed')}
+            />
+            <ContextMenu.Item
+              id="delete"
+              title="Delete"
+              systemImage="trash"
+              destructive
+              onPress={() => Alert.alert('Delete pressed')}
+            />
+          </ContextMenu.Content>
+        </ContextMenu.Root>
       </View>
-      <ContextMenu.Root>
-        <ContextMenu.Trigger>
-          <Pressable
-            style={({ pressed }) => [styles.box, pressed && styles.boxPressed]}
-            onPress={() => Alert.alert('Button pressed')}
-          >
-            <Text style={styles.label}>Tap or hold</Text>
-          </Pressable>
-        </ContextMenu.Trigger>
-        <ContextMenu.Content>
-          <ContextMenu.Item
-            id="share"
-            title="Share"
-            systemImage="square.and.arrow.up"
-            onPress={() => Alert.alert('Share pressed')}
-          />
-          <ContextMenu.Item
-            id="copy"
-            title="Copy"
-            systemImage="doc.on.doc"
-            onPress={() => Alert.alert('Copy pressed')}
-          />
-          <ContextMenu.Item
-            id="delete"
-            title="Delete"
-            systemImage="trash"
-            destructive
-            onPress={() => Alert.alert('Delete pressed')}
-          />
-        </ContextMenu.Content>
-      </ContextMenu.Root>
-    </View>
+    </StrictMode>
   );
 }
 

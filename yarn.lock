@@ -1519,7 +1519,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.27.1, @babel/types@npm:^7.27.3, @babel/types@npm:^7.28.2, @babel/types@npm:^7.28.5, @babel/types@npm:^7.28.6, @babel/types@npm:^7.29.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.26.0, @babel/types@npm:^7.27.1, @babel/types@npm:^7.27.3, @babel/types@npm:^7.28.2, @babel/types@npm:^7.28.5, @babel/types@npm:^7.28.6, @babel/types@npm:^7.29.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.4.4":
   version: 7.29.0
   resolution: "@babel/types@npm:7.29.0"
   dependencies:
@@ -3952,6 +3952,15 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.4.0 || ^8.0.0-0 <8.0.0
   checksum: 10c0/7c8b2497c29fa880e0acdc8e7b93e29b81b154179b83beb0476eb2c4e7a78b6b42fc35c2554ca250c9bd6d39941eaf75416254b8592ce50979f9a12e1d51c049
+  languageName: node
+  linkType: hard
+
+"babel-plugin-react-compiler@npm:1.0.0":
+  version: 1.0.0
+  resolution: "babel-plugin-react-compiler@npm:1.0.0"
+  dependencies:
+    "@babel/types": "npm:^7.26.0"
+  checksum: 10c0/9406267ada8d7dbdfe8906b40ecadb816a5f4cee2922bee23f7729293b369624ee135b5a9b0f263851c263c9787522ac5d97016c9a2b82d1668300e42b18aff8
   languageName: node
   linkType: hard
 
@@ -9082,6 +9091,7 @@ __metadata:
     "@react-native/metro-config": "npm:0.85.2"
     "@react-native/typescript-config": "npm:0.85.2"
     "@types/react": "npm:^19.2.14"
+    babel-plugin-react-compiler: "npm:1.0.0"
     execa: "npm:^9.6.1"
     react: "npm:19.2.3"
     react-native: "npm:0.85.2"
@@ -9103,6 +9113,7 @@ __metadata:
     "@react-native/eslint-config": "npm:0.85.2"
     "@react-native/jest-preset": "npm:0.85.2"
     "@types/react": "npm:^19.2.14"
+    babel-plugin-react-compiler: "npm:1.0.0"
     commitlint: "npm:^20.5.3"
     del-cli: "npm:^7.0.0"
     eslint: "npm:^9.39.4"
@@ -9118,7 +9129,7 @@ __metadata:
     turbo: "npm:^2.9.7"
     typescript: "npm:^6.0.3"
   peerDependencies:
-    react: "*"
+    react: ">=19.0.0"
     react-native: "*"
   languageName: unknown
   linkType: soft

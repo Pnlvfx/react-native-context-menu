@@ -1,8 +1,8 @@
+import type { MenuItemConfig, NativeMenuItemData } from './types';
+import ContextMenuNativeView from './ContextMenuViewNativeComponent';
 import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
 import { StyleSheet } from 'react-native';
 import { ContextMenuContext } from './ContextMenuContext';
-import type { MenuItemConfig, NativeMenuItemData } from './types';
-import ContextMenuNativeView from './ContextMenuViewNativeComponent';
 
 type RootProps = {
   children: ReactNode;
@@ -59,19 +59,19 @@ export const Root = ({ children }: RootProps) => {
   );
 
   return (
-    <ContextMenuContext.Provider value={contextValue}>
+    <ContextMenuContext value={contextValue}>
       <ContextMenuNativeView
-        style={styles.root}
+        style={root}
         menuItems={nativeItems}
         onMenuItemPress={handleMenuItemPress}
       >
         {children}
       </ContextMenuNativeView>
-    </ContextMenuContext.Provider>
+    </ContextMenuContext>
   );
 };
 
-const styles = StyleSheet.create({
+const { root } = StyleSheet.create({
   root: {
     alignSelf: 'flex-start',
   },

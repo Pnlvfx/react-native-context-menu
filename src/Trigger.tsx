@@ -5,5 +5,5 @@ type TriggerProps = {
 };
 
 export const Trigger = ({ children }: TriggerProps) => {
-  return <>{children}</>;
+  return children;
 };

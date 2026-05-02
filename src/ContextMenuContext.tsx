@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react';
 import type { MenuItemConfig } from './types';
+import { createContext, use } from 'react';
 
 type ContextMenuContextValue = {
   registerItem: (item: MenuItemConfig) => void;
@@ -13,4 +13,4 @@ export const ContextMenuContext = createContext<ContextMenuContextValue>({
   updateHandler: () => {},
 });
 
-export const useContextMenu = () => useContext(ContextMenuContext);
+export const useContextMenu = () => use(ContextMenuContext);

@@ -19,8 +19,8 @@ export const Item = ({
   onPress,
 }: ItemProps) => {
   const { registerItem, unregisterItem, updateHandler } = useContextMenu();
-
   const onPressRef = useRef(onPress);
+
   useLayoutEffect(() => {
     onPressRef.current = onPress;
   });
@@ -43,5 +43,5 @@ export const Item = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  return null;
+  return undefined;
 };
