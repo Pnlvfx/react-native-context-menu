@@ -1,4 +1,4 @@
-# react-native-context-menu
+# @simonegauli/react-native-context-menu
 
 iOS
 
@@ -6,7 +6,7 @@ iOS
 
 
 ```sh
-npm install react-native-context-menu
+npm install @simonegauli/react-native-context-menu
 ```
 
 
@@ -14,7 +14,7 @@ npm install react-native-context-menu
 
 
 ```js
-import { ContextMenuView } from "react-native-context-menu";
+import { ContextMenuView } from "@simonegauli/react-native-context-menu";
 
 // ...
 

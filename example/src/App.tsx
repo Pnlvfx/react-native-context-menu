@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
-import * as ContextMenu from 'react-native-context-menu';
+import * as ContextMenu from '@simonegauli/react-native-context-menu';
 
 export default function App() {
   return (
