@@ -18,7 +18,7 @@ I’m building this package in my free time (evenings and weekends), so developm
 
 ## React Compiler
 
-This package is compiled with the [React Compiler](https://react.dev/learn/react-compiler). The published code is automatically optimized and memoized — no manual `useMemo`, `useCallback`, or `memo` calls needed on your side when consuming this library.
+This package is compiled with the [React Compiler](https://react.dev/learn/react-compiler). The published code is automatically optimized and memoized.
 
 ---
 
