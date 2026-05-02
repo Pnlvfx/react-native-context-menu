@@ -1,23 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { useContextMenu } from './ContextMenuContext';
+import { ItemContext } from './ItemContext';
 
 export interface ContextMenuItemProps {
   id: string;
-  title: string;
   destructive?: boolean;
   disabled?: boolean;
   systemImage?: string;
   onPress?: () => void;
+  children?: ReactNode;
 }
 
 export const Item = ({
   id,
-  title,
   destructive = false,
   disabled = false,
   systemImage = '',
   onPress,
+  children,
 }: ContextMenuItemProps) => {
+  const [title, setTitle] = useState('');
   const { registerItem, unregisterItem } = useContextMenu();
 
   useEffect(() => {
@@ -37,5 +39,5 @@ export const Item = ({
     onPress,
   ]);
 
-  return undefined;
+  return <ItemContext value={{ setTitle }}>{children}</ItemContext>;
 };

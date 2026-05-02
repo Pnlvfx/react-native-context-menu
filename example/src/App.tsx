@@ -26,23 +26,26 @@ export default function App() {
             <ContextMenu.Content>
               <ContextMenu.Item
                 id="share"
-                title="Share"
                 systemImage="square.and.arrow.up"
                 onPress={() => Alert.alert('Share pressed')}
-              />
+              >
+                <ContextMenu.ItemTitle>{'Share'}</ContextMenu.ItemTitle>
+              </ContextMenu.Item>
               <ContextMenu.Item
                 id="copy"
-                title="Copy"
                 systemImage="doc.on.doc"
                 onPress={() => Alert.alert('Copy pressed')}
-              />
+              >
+                <ContextMenu.ItemTitle>{'Copy'}</ContextMenu.ItemTitle>
+              </ContextMenu.Item>
               <ContextMenu.Item
                 id="delete"
-                title="Delete"
                 systemImage="trash"
                 destructive
                 onPress={() => Alert.alert('Delete pressed')}
-              />
+              >
+                <ContextMenu.ItemTitle>{'Delete'}</ContextMenu.ItemTitle>
+              </ContextMenu.Item>
             </ContextMenu.Content>
           </ContextMenu.Root>
         </View>
@@ -60,9 +63,7 @@ const blob = {
 } as const;
 
 const styles = StyleSheet.create({
-  gestureRoot: {
-    flex: 1,
-  },
+  gestureRoot: { flex: 1 },
   container: {
     flex: 1,
     backgroundColor: '#1a1a2e',

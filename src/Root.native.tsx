@@ -1,10 +1,9 @@
 import type { StyleProp, ViewStyle } from 'react-native';
-import type { ContextMenuItemProps } from './Item';
 import ContextMenuNativeView, {
   type NativeContextMenuItem,
 } from './ContextMenuViewNativeComponent';
 import { useRef, useState, type ReactNode } from 'react';
-import { ContextMenuContext } from './ContextMenuContext';
+import { ContextMenuContext, type RegisteredItem } from './ContextMenuContext';
 
 export interface ContextMenuRootProps {
   readonly children: ReactNode;
@@ -22,7 +21,7 @@ export const Root = ({ children, style }: ContextMenuRootProps) => {
     destructive,
     disabled,
     systemImage,
-  }: ContextMenuItemProps) => {
+  }: RegisteredItem) => {
     if (onPress !== undefined) {
       handlersRef.current.set(id, onPress);
     }

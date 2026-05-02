@@ -1,8 +1,12 @@
-import type { ContextMenuItemProps } from './Item';
+import type { NativeContextMenuItem } from './ContextMenuViewNativeComponent';
 import { createContext, use } from 'react';
 
+export type RegisteredItem = NativeContextMenuItem & {
+  onPress: (() => void) | undefined;
+};
+
 interface ContextMenuCommands {
-  registerItem: (item: ContextMenuItemProps) => void;
+  registerItem: (item: RegisteredItem) => void;
   unregisterItem: (id: string) => void;
   updateHandler: (id: string, onPress: (() => void) | undefined) => void;
 }

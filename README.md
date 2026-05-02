@@ -84,25 +84,15 @@ export default function App() {
               </Pressable>
             </ContextMenu.Trigger>
             <ContextMenu.Content>
-              <ContextMenu.Item
-                id="share"
-                title="Share"
-                systemImage="square.and.arrow.up"
-                onPress={() => Alert.alert('Share pressed')}
-              />
-              <ContextMenu.Item
-                id="copy"
-                title="Copy"
-                systemImage="doc.on.doc"
-                onPress={() => Alert.alert('Copy pressed')}
-              />
-              <ContextMenu.Item
-                id="delete"
-                title="Delete"
-                systemImage="trash"
-                destructive
-                onPress={() => Alert.alert('Delete pressed')}
-              />
+              <ContextMenu.Item id="share" systemImage="square.and.arrow.up" onPress={() => Alert.alert('Share pressed')}>
+                <ContextMenu.ItemTitle>Share</ContextMenu.ItemTitle>
+              </ContextMenu.Item>
+              <ContextMenu.Item id="copy" systemImage="doc.on.doc" onPress={() => Alert.alert('Copy pressed')}>
+                <ContextMenu.ItemTitle>Copy</ContextMenu.ItemTitle>
+              </ContextMenu.Item>
+              <ContextMenu.Item id="delete" systemImage="trash" destructive onPress={() => Alert.alert('Delete pressed')}>
+                <ContextMenu.ItemTitle>Delete</ContextMenu.ItemTitle>
+              </ContextMenu.Item>
             </ContextMenu.Content>
           </ContextMenu.Root>
         </View>
@@ -166,16 +156,24 @@ Declares the menu items. Only renders `Item` components — other children are a
 
 ### `ContextMenu.Item`
 
-A single menu action.
+A single menu action. Must contain an `ItemTitle` child.
 
 | Prop          | Type         | Default      | Description                                                                                                                                                   |
 | ------------- | ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`          | `string`     | — (required) | Unique identifier for this item                                                                                                                               |
-| `title`       | `string`     | — (required) | Label displayed in the menu                                                                                                                                   |
+| `children`    | `ReactNode`  | — (required) | Must include an `ItemTitle`                                                                                                                                   |
 | `destructive` | `boolean`    | `false`      | Renders the item with destructive (red) styling                                                                                                               |
 | `disabled`    | `boolean`    | `false`      | Greys-out the item and makes it non-interactive                                                                                                               |
 | `systemImage` | `string`     | `''`         | SF Symbol name for the item icon (e.g., `"trash"`, `"square.and.arrow.up"`). See [SF Symbols](https://developer.apple.com/sf-symbols/) for the full catalogue |
 | `onPress`     | `() => void` | `undefined`  | Callback invoked when the user taps the menu item                                                                                                             |
+
+### `ContextMenu.ItemTitle`
+
+Sets the label for the parent `Item`. Must be a direct child of `Item`. Children must be a plain string — passing any other type throws an error at runtime.
+
+| Prop       | Type     | Required | Description                    |
+| ---------- | -------- | -------- | ------------------------------ |
+| `children` | `string` | Yes      | Label displayed in the menu    |
 
 ---
 
