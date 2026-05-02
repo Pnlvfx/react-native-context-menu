@@ -1,16 +1,16 @@
-export type MenuItemConfig = {
+export interface MenuItemConfig {
   id: string;
   title: string;
   destructive?: boolean;
   disabled?: boolean;
   systemImage?: string;
   onPress?: () => void;
-};
+}
 
-export type NativeMenuItemData = {
+export interface NativeMenuItemData {
   id: string;
   title: string;
   destructive: boolean;
   disabled: boolean;
   systemImage: string;
-};
+}
