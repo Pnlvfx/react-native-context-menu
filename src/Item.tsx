@@ -21,6 +21,7 @@ export const Item = ({
   const { registerItem, unregisterItem } = useContextMenu();
 
   useEffect(() => {
+    console.log('reload');
     registerItem({
       id,
       title,
