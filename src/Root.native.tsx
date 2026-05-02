@@ -1,33 +1,44 @@
-import type { MenuItemConfig, NativeMenuItemData } from './types';
 import type { StyleProp, ViewStyle } from 'react-native';
-import ContextMenuNativeView from './ContextMenuViewNativeComponent';
+import type { ContextMenuItemProps } from './Item';
+import ContextMenuNativeView, {
+  type NativeContextMenuItem,
+} from './ContextMenuViewNativeComponent';
 import { useRef, useState, type ReactNode } from 'react';
 import { ContextMenuContext } from './ContextMenuContext';
 
-export interface RootProps {
+export interface ContextMenuRootProps {
   readonly children: ReactNode;
   readonly style?: StyleProp<ViewStyle>;
 }
 
-export const Root = ({ children, style }: RootProps) => {
-  const [nativeItems, setNativeItems] = useState<NativeMenuItemData[]>([]);
+export const Root = ({ children, style }: ContextMenuRootProps) => {
+  const [nativeItems, setNativeItems] = useState<NativeContextMenuItem[]>([]);
   const handlersRef = useRef<Map<string, () => void>>(new Map());
 
-  const registerItem = (item: MenuItemConfig) => {
-    const { onPress, ...rest } = item;
+  const registerItem = ({
+    onPress,
+    id,
+    title,
+    destructive,
+    disabled,
+    systemImage,
+  }: ContextMenuItemProps) => {
     if (onPress !== undefined) {
-      handlersRef.current.set(item.id, onPress);
+      handlersRef.current.set(id, onPress);
     }
-    const nativeItem: NativeMenuItemData = {
-      id: rest.id,
-      title: rest.title,
-      destructive: rest.destructive ?? false,
-      disabled: rest.disabled ?? false,
-      systemImage: rest.systemImage ?? '',
-    };
+
     setNativeItems((prev) => {
-      const filtered = prev.filter((i) => i.id !== item.id);
-      return [...filtered, nativeItem];
+      const filtered = prev.filter((i) => i.id !== id);
+      return [
+        ...filtered,
+        {
+          id,
+          title,
+          destructive: destructive ?? false,
+          disabled: disabled ?? false,
+          systemImage: systemImage ?? '',
+        },
+      ];
     });
   };
 

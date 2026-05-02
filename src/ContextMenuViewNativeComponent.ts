@@ -1,21 +1,23 @@
-import type { ViewProps } from 'react-native';
-import type { CodegenTypes } from 'react-native';
-import { codegenNativeComponent } from 'react-native';
+import {
+  type ViewProps,
+  type CodegenTypes,
+  codegenNativeComponent,
+} from 'react-native';
 
-type MenuItemPressEvent = Readonly<{
-  id: string;
-}>;
+interface MenuItemPressEvent {
+  readonly id: string;
+}
 
-type NativeMenuItem = Readonly<{
-  id: string;
-  title: string;
-  destructive: boolean;
-  disabled: boolean;
-  systemImage: string;
-}>;
+export interface NativeContextMenuItem {
+  readonly id: string;
+  readonly title: string;
+  readonly destructive: boolean;
+  readonly disabled: boolean;
+  readonly systemImage: string;
+}
 
 interface NativeProps extends ViewProps {
-  menuItems?: ReadonlyArray<NativeMenuItem>;
+  menuItems?: ReadonlyArray<NativeContextMenuItem>;
   onMenuItemPress?: CodegenTypes.DirectEventHandler<MenuItemPressEvent>;
 }
 

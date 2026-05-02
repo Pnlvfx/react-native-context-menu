@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 
-interface ContentProps {
+interface ContextMenuContentProps {
   readonly children: ReactNode;
 }
 
-export const Content = ({ children }: ContentProps) => {
+export const Content = ({ children }: ContextMenuContentProps) => {
   return children;
 };

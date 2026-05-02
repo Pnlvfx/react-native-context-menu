@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 
-interface TriggerProps {
+export interface ContextMenuTriggerProps {
   children: ReactNode;
 }
 
-export const Trigger = ({ children }: TriggerProps) => {
+export const Trigger = ({ children }: ContextMenuTriggerProps) => {
   return children;
 };

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useContextMenu } from './ContextMenuContext';
 
-type ItemProps = {
+export interface ContextMenuItemProps {
   id: string;
   title: string;
   destructive?: boolean;
   disabled?: boolean;
   systemImage?: string;
   onPress?: () => void;
-};
+}
 
 export const Item = ({
   id,
@@ -17,20 +17,15 @@ export const Item = ({
   disabled = false,
   systemImage = '',
   onPress,
-}: ItemProps) => {
+}: ContextMenuItemProps) => {
   const { registerItem, unregisterItem } = useContextMenu();
 
   useEffect(() => {
-    console.log('reload');
-    registerItem({
-      id,
-      title,
-      destructive,
-      disabled,
-      systemImage,
-      onPress,
-    });
-    return () => unregisterItem(id);
+    registerItem({ id, title, destructive, disabled, systemImage, onPress });
+
+    return () => {
+      unregisterItem(id);
+    };
   }, [
     id,
     title,
