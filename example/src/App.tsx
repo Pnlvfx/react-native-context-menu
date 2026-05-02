@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ContextMenu } from 'react-native-context-menu';
 
 export default function App() {
@@ -13,9 +13,12 @@ export default function App() {
       </View>
       <ContextMenu.Root>
         <ContextMenu.Trigger>
-          <View style={styles.box}>
-            <Text style={styles.label}>Hold me</Text>
-          </View>
+          <Pressable
+            style={({ pressed }) => [styles.box, pressed && styles.boxPressed]}
+            onPress={() => Alert.alert('Button pressed')}
+          >
+            <Text style={styles.label}>Tap or hold</Text>
+          </Pressable>
         </ContextMenu.Trigger>
         <ContextMenu.Content>
           <ContextMenu.Item
@@ -75,6 +78,9 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.4)',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  boxPressed: {
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
   label: {
     color: '#fff',
