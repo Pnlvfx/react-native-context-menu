@@ -46,12 +46,8 @@
     "ios",
     "android",
     "context-menu",
-    "fabric",
-    "new-architecture",
-    "uicontextmenuinteraction",
-    "long-press",
-    "3d-touch",
-    "slot-based"
+    "ios context-menu",
+    "react native context menu"
   ],
   "repository": {
     "type": "git",
