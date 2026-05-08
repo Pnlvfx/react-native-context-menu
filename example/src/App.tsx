@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import {
   GestureHandlerRootView,
   Pressable,
@@ -7,20 +7,53 @@ import {
 import * as ContextMenu from '@simonegauli/react-native-context-menu';
 
 export default function App() {
+  const scheme = useColorScheme();
+  const dark = scheme === 'dark';
+
   return (
     <StrictMode>
       <GestureHandlerRootView style={styles.gestureRoot}>
-        <View style={styles.container}>
+        <View
+          style={[
+            styles.container,
+            dark ? styles.containerDark : styles.containerLight,
+          ]}
+        >
+          <Text
+            style={[
+              styles.heading,
+              dark ? styles.headingDark : styles.headingLight,
+            ]}
+          >
+            react-native-context-menu
+          </Text>
+          <Text
+            style={[
+              styles.subheading,
+              dark ? styles.subheadingDark : styles.subheadingLight,
+            ]}
+          >
+            thanks for being here
+          </Text>
           <ContextMenu.Root>
             <ContextMenu.Trigger>
               <Pressable
                 style={({ pressed }) => [
                   styles.box,
-                  pressed && styles.boxPressed,
+                  dark ? styles.boxDark : styles.boxLight,
+                  pressed &&
+                    (dark ? styles.boxPressedDark : styles.boxPressedLight),
                 ]}
                 onPress={() => Alert.alert('Button pressed')}
               >
-                <Text style={styles.label}>Tap or hold</Text>
+                <Text
+                  style={[
+                    styles.label,
+                    dark ? styles.labelDark : styles.labelLight,
+                  ]}
+                >
+                  Hold me
+                </Text>
               </Pressable>
             </ContextMenu.Trigger>
             <ContextMenu.Content>
@@ -54,37 +87,43 @@ export default function App() {
   );
 }
 
-const blob = {
-  position: 'absolute',
-  width: 200,
-  height: 200,
-  borderRadius: 100,
-  opacity: 0.6,
-} as const;
-
 const styles = StyleSheet.create({
   gestureRoot: { flex: 1 },
   container: {
     flex: 1,
-    backgroundColor: '#1a1a2e',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 8,
   },
-  blob1: { ...blob, backgroundColor: '#FF6B6B', top: 60, left: 30 },
-  blob2: { ...blob, backgroundColor: '#4ECDC4', top: 200, right: 20 },
-  blob3: { ...blob, backgroundColor: '#FFE66D', bottom: 300, left: 60 },
-  blob4: { ...blob, backgroundColor: '#A29BFE', bottom: 150, right: 40 },
-  blob5: { ...blob, backgroundColor: '#FD79A8', top: 400, left: 100 },
+  containerDark: { backgroundColor: '#0f0f0f' },
+  containerLight: { backgroundColor: '#f5f5f5' },
+  heading: {
+    fontSize: 18,
+    fontWeight: '700',
+    letterSpacing: 0.2,
+    marginBottom: 4,
+  },
+  headingDark: { color: '#ffffff' },
+  headingLight: { color: '#0f0f0f' },
+  subheading: { fontSize: 13, fontWeight: '400', marginBottom: 32 },
+  subheadingDark: { color: 'rgba(255,255,255,0.5)' },
+  subheadingLight: { color: 'rgba(0,0,0,0.4)' },
   box: {
-    width: 160,
-    height: 80,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    paddingHorizontal: 28,
+    paddingVertical: 14,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.4)',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  boxPressed: { backgroundColor: 'rgba(255,255,255,0.3)' },
-  label: { color: '#fff', fontWeight: '600', fontSize: 16 },
+  boxDark: {
+    backgroundColor: '#1e1e1e',
+    borderColor: 'rgba(255,255,255,0.12)',
+  },
+  boxLight: { backgroundColor: '#ffffff', borderColor: 'rgba(0,0,0,0.08)' },
+  boxPressedDark: { backgroundColor: '#2a2a2a' },
+  boxPressedLight: { backgroundColor: '#e8e8e8' },
+  label: { fontWeight: '500', fontSize: 15 },
+  labelDark: { color: 'rgba(255,255,255,0.85)' },
+  labelLight: { color: 'rgba(0,0,0,0.8)' },
 });
