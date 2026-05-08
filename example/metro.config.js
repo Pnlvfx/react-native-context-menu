@@ -1,5 +1,5 @@
 const path = require('path');
-const { getDefaultConfig } = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { withMetroConfig } = require('react-native-monorepo-config');
 
 const root = path.resolve(__dirname, '..');
@@ -15,4 +15,8 @@ const config = withMetroConfig(getDefaultConfig(__dirname), {
   dirname: __dirname,
 });
 
-module.exports = config;
+module.exports = mergeConfig(config, {
+  resolver: {
+    blockList: [new RegExp(`${path.resolve(root, 'media')}/.*`)],
+  },
+});
