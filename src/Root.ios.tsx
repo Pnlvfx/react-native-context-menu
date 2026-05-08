@@ -1,14 +1,9 @@
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { ContextMenuRootProps } from './Root';
 import ContextMenuNativeView, {
   type NativeContextMenuItem,
 } from './ContextMenuViewNativeComponent';
-import { useRef, useState, type ReactNode } from 'react';
+import { useRef, useState } from 'react';
 import { ContextMenuContext, type RegisteredItem } from './ContextMenuContext';
-
-export interface ContextMenuRootProps {
-  readonly children: ReactNode;
-  readonly style?: StyleProp<ViewStyle>;
-}
 
 export const Root = ({ children, style }: ContextMenuRootProps) => {
   const [nativeItems, setNativeItems] = useState<NativeContextMenuItem[]>([]);

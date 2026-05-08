@@ -1,7 +1,9 @@
-import type { ContextMenuRootProps } from './Root.native';
+import type { ReactNode } from 'react';
+import type { StyleProp, ViewStyle } from 'react-native';
 
-export const Root = (_props: ContextMenuRootProps): never => {
-  throw new Error(
-    '@simonegauli/react-native-context-menu is only supported on native platforms.'
-  );
-};
+export interface ContextMenuRootProps {
+  readonly children: ReactNode;
+  readonly style?: StyleProp<ViewStyle>;
+}
+
+export const Root = ({ children }: ContextMenuRootProps) => children;

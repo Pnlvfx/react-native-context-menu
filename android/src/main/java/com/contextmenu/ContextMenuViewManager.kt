@@ -1,39 +1,27 @@
 package com.contextmenu
 
-import android.graphics.Color
+import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.uimanager.SimpleViewManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewManagerDelegate
-import com.facebook.react.uimanager.annotations.ReactProp
-import com.facebook.react.viewmanagers.ContextMenuViewManagerInterface
 import com.facebook.react.viewmanagers.ContextMenuViewManagerDelegate
+import com.facebook.react.viewmanagers.ContextMenuViewManagerInterface
 
 @ReactModule(name = ContextMenuViewManager.NAME)
-class ContextMenuViewManager : SimpleViewManager<ContextMenuView>(),
+internal class ContextMenuViewManager : SimpleViewManager<ContextMenuView>(),
   ContextMenuViewManagerInterface<ContextMenuView> {
-  private val mDelegate: ViewManagerDelegate<ContextMenuView>
 
-  init {
-    mDelegate = ContextMenuViewManagerDelegate(this)
-  }
+  private val mDelegate: ViewManagerDelegate<ContextMenuView> = ContextMenuViewManagerDelegate(this)
 
-  override fun getDelegate(): ViewManagerDelegate<ContextMenuView>? {
-    return mDelegate
-  }
+  override fun getDelegate(): ViewManagerDelegate<ContextMenuView> = mDelegate
 
-  override fun getName(): String {
-    return NAME
-  }
+  override fun getName(): String = NAME
 
-  public override fun createViewInstance(context: ThemedReactContext): ContextMenuView {
-    return ContextMenuView(context)
-  }
+  override fun createViewInstance(context: ThemedReactContext): ContextMenuView =
+    ContextMenuView(context)
 
-  @ReactProp(name = "color")
-  override fun setColor(view: ContextMenuView?, color: Int?) {
-    view?.setBackgroundColor(color ?: Color.TRANSPARENT)
-  }
+  override fun setMenuItems(view: ContextMenuView?, value: ReadableArray?) = Unit
 
   companion object {
     const val NAME = "ContextMenuView"
