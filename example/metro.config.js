@@ -16,7 +16,11 @@ const config = withMetroConfig(getDefaultConfig(__dirname), {
 });
 
 module.exports = mergeConfig(config, {
+  resetCache: true,
   resolver: {
-    blockList: [new RegExp(`${path.resolve(root, 'media')}/.*`)],
+    blockList: [
+      ...[config.resolver.blockList].flat().filter(Boolean),
+      new RegExp(`${path.resolve(root, 'media')}/.*`),
+    ],
   },
 });
