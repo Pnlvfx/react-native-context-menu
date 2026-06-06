@@ -4,34 +4,30 @@ appId: contextmenu.example
     clearState: true
 
 # Trigger shows on screen
-- assertVisible: "Tap or hold"
+- assertVisible: "Hold me"
 
 # Single tap fires onPress without opening context menu
-- tapOn: "Tap or hold"
+- tapOn: "Hold me"
 - assertVisible: "Button pressed"
 - tapOn: "OK"
 
-# Long press opens the context menu
-- longPressOn: "Tap or hold"
+# Long press opens the context menu - assert all items visible once
+- longPressOn: "Hold me"
 - assertVisible: "Share"
 - assertVisible: "Copy"
 - assertVisible: "Delete"
-
-# Tapping Share fires item onPress
 - tapOn: "Share"
 - assertVisible: "Share pressed"
 - tapOn: "OK"
 
-# Long press again - tap Copy
-- longPressOn: "Tap or hold"
-- assertVisible: "Copy"
+# Long press - tap Copy
+- longPressOn: "Hold me"
 - tapOn: "Copy"
 - assertVisible: "Copy pressed"
 - tapOn: "OK"
 
-# Long press again - tap Delete (destructive)
-- longPressOn: "Tap or hold"
-- assertVisible: "Delete"
+# Long press - tap Delete (destructive)
+- longPressOn: "Hold me"
 - tapOn: "Delete"
 - assertVisible: "Delete pressed"
 - tapOn: "OK"
