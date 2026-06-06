@@ -1,13 +1,13 @@
 import { execa } from 'execa';
 import path from 'node:path';
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 
 const flowFile = path.join('.maestro', 'context_menu.yaml');
 const mediaDir = path.join('media');
 const outputFile = path.join(mediaDir, 'showcase.mp4');
 const gifFile = path.join(mediaDir, 'showcase.gif');
 
-fs.mkdirSync(mediaDir, { recursive: true });
+await fs.mkdir(mediaDir, { recursive: true });
 
 await execa('maestro', ['record', '--local', flowFile, outputFile], {
   stdio: 'inherit',
