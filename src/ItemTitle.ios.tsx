@@ -1,6 +1,6 @@
+import type { ContextMenuItemTitleProps } from './ItemTitle';
 import { useEffect } from 'react';
 import { useContextMenuItem } from './ItemContext';
-import type { ContextMenuItemTitleProps } from './ItemTitle';
 
 export const ItemTitle = ({ children }: ContextMenuItemTitleProps) => {
   const { setTitle } = useContextMenuItem();
@@ -17,5 +17,5 @@ export const ItemTitle = ({ children }: ContextMenuItemTitleProps) => {
     };
   }, [children, setTitle]);
 
-  return null;
+  return undefined;
 };

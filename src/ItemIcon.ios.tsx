@@ -1,6 +1,6 @@
+import type { ContextMenuItemIconProps } from './ItemIcon';
 import { useEffect } from 'react';
 import { useContextMenuItem } from './ItemContext';
-import type { ContextMenuItemIconProps } from './ItemIcon';
 
 export const ItemIcon = ({ ios }: ContextMenuItemIconProps) => {
   const { setIcon } = useContextMenuItem();
