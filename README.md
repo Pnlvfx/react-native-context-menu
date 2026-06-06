@@ -8,6 +8,8 @@
 
 Native iOS context menus (long-press / 3D Touch) for React Native — built on the New Architecture (Fabric) with a composable, slot-based API.
 
+![showcase](./media/showcase.gif)
+
 ---
 
 ## ⚠️ Maintainer notice
