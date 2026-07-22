@@ -3,7 +3,7 @@ import { defineConfig, globalIgnores } from '@eslint/config-helpers';
 
 export default defineConfig(
   globalIgnores(['.yarn/**', 'android/**', 'ios/**', 'lib']),
-  ...reactNativeConfigs({ tsconfigRootDir: import.meta.dirname }),
+  ...reactNativeConfigs({ tsconfigRootDir: import.meta.dirname, a11y: false }),
   {
     rules: {
       'unicorn/filename-case': 'off',

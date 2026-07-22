@@ -1,7 +1,18 @@
 import type { ContextMenuRootProps } from './Root';
 import ContextMenuNativeView, { type NativeContextMenuItem } from './ContextMenuViewNativeComponent';
-import { useRef, useState } from 'react';
-import { ContextMenuContext, type RegisteredItem } from './ContextMenuContext';
+import { createContext, use, useRef, useState } from 'react';
+
+export type RegisteredItem = NativeContextMenuItem & {
+  onPress: (() => void) | undefined;
+};
+
+interface ContextMenuCommands {
+  registerItem: (item: RegisteredItem) => void;
+  unregisterItem: (id: string) => void;
+  updateHandler: (id: string, onPress: (() => void) | undefined) => void;
+}
+
+const Context = createContext<ContextMenuCommands | undefined>(undefined);
 
 export const Root = ({ children, style }: ContextMenuRootProps) => {
   const [nativeItems, setNativeItems] = useState<NativeContextMenuItem[]>([]);
@@ -13,17 +24,7 @@ export const Root = ({ children, style }: ContextMenuRootProps) => {
     }
 
     setNativeItems((prev) => {
-      const filtered = prev.filter((i) => i.id !== id);
-      return [
-        ...filtered,
-        {
-          id,
-          title,
-          destructive,
-          disabled,
-          systemImage,
-        },
-      ];
+      return [...prev.filter((i) => i.id !== id), { id, title, destructive, disabled, systemImage }];
     });
   };
 
@@ -45,10 +46,16 @@ export const Root = ({ children, style }: ContextMenuRootProps) => {
   };
 
   return (
-    <ContextMenuContext value={{ registerItem, unregisterItem, updateHandler }}>
+    <Context value={{ registerItem, unregisterItem, updateHandler }}>
       <ContextMenuNativeView menuItems={nativeItems} onMenuItemPress={handleMenuItemPress} style={style}>
         {children}
       </ContextMenuNativeView>
-    </ContextMenuContext>
+    </Context>
   );
+};
+
+export const useContextMenu = () => {
+  const context = use(Context);
+  if (!context) throw new Error('useContextMenu must be used within ContextMenu.Root.');
+  return context;
 };

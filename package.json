@@ -96,9 +96,9 @@
     "sf-symbols-typescript": "^2.2.0"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^21.0.2",
-    "@eslint/config-helpers": "^0.6.0",
-    "@goatjs/react-native-eslint": "^2.45.0",
+    "@commitlint/config-conventional": "^21.2.0",
+    "@eslint/config-helpers": "^0.7.0",
+    "@goatjs/react-native-eslint": "^3.8.0",
     "@goatjs/typescript-config": "^2.2.0",
     "@jest/globals": "^30.4.1",
     "@react-native/babel-preset": "0.86.0",
@@ -106,24 +106,24 @@
     "@react-native/jest-preset": "0.86.0",
     "@types/react": "^19.2.17",
     "babel-plugin-react-compiler": "0.0.0-experimental-a1856f3-20260507",
-    "commitlint": "^21.0.2",
+    "commitlint": "^21.2.1",
     "del-cli": "^7.0.0",
-    "eslint": "^10.5.0",
-    "execa": "^9.6.1",
+    "eslint": "^10.7.0",
+    "execa": "^10.0.0",
     "jest": "^30.4.2",
-    "lefthook": "^2.1.9",
-    "prettier": "^3.8.4",
+    "lefthook": "^2.1.10",
+    "prettier": "^3.9.6",
     "react": "19.2.3",
     "react-native": "0.86.0",
-    "react-native-builder-bob": "^0.42.1",
-    "turbo": "^2.9.18",
+    "react-native-builder-bob": "^0.43.0",
+    "turbo": "^2.10.5",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "react": ">=19.0.0",
     "react-native": "*"
   },
-  "packageManager": "yarn@4.17.0+sha512.c2957de2f9025ab14d63b24d0d8be1f1655810e22c341042c27f7ecd017b180ec12db73d69ac366d71b304ef9f069349ce462de96f04f8f1da317f4f762c95ae",
+  "packageManager": "yarn@4.17.1+sha512.ccbfabf7d7b6b32075088be9386fb9a2e00bb6887ef07fa56effabc890a56d53da1ccc4128d62db245fcbd3961b236d75335bdf7d5320ed6eafb7588b7ad4697",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
