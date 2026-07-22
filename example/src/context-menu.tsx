@@ -1,44 +1,50 @@
+/* eslint-disable goat-eslint/no-inline-styles */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as ContextMenuPrimitive from '@simonegauli/react-native-context-menu';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, useColorScheme } from 'react-native';
+
+const handlePress = () => {
+  Alert.alert('Button pressed');
+};
+
+const handleShare = () => {
+  Alert.alert('Share pressed');
+};
+
+const handleCopy = () => {
+  Alert.alert('Copy pressed');
+};
+
+const handleDelete = () => {
+  Alert.alert('Delete pressed');
+};
 
 export const ContextMenu1 = () => {
+  const dark = useColorScheme() === 'dark';
+
+  const computed = ({ pressed }: { pressed: boolean }) => [
+    box,
+    dark ? { backgroundColor: '#1e1e1e', borderColor: 'rgba(255,255,255,0.12)' } : { backgroundColor: '#ffffff', borderColor: 'rgba(0,0,0,0.08)' },
+    pressed && (dark ? { backgroundColor: '#2a2a2a' } : { backgroundColor: '#e8e8e8' }),
+  ];
+
   return (
     <ContextMenuPrimitive.Root>
       <ContextMenuPrimitive.Trigger>
-        <Pressable
-          onPress={() => Alert.alert('Button pressed')}
-          style={({ pressed }) => [box, dark ? styles.boxDark : styles.boxLight, pressed && (dark ? styles.boxPressedDark : styles.boxPressedLight)]}
-        >
-          <Text style={[label, dark ? styles.labelDark : styles.labelLight]}>{'Hold me'}</Text>
+        <Pressable onPress={handlePress} style={computed}>
+          <Text style={[label, dark ? { color: 'rgba(255,255,255,0.85)' } : { color: 'rgba(0,0,0,0.8)' }]}>{'Hold me'}</Text>
         </Pressable>
       </ContextMenuPrimitive.Trigger>
       <ContextMenuPrimitive.Content>
-        <ContextMenuPrimitive.Item
-          id="share"
-          onPress={() => {
-            Alert.alert('Share pressed');
-          }}
-        >
+        <ContextMenuPrimitive.Item id="share" onPress={handleShare}>
           <ContextMenuPrimitive.ItemTitle>{'Share'}</ContextMenuPrimitive.ItemTitle>
           <ContextMenuPrimitive.ItemIcon ios="square.and.arrow.up" />
         </ContextMenuPrimitive.Item>
-        <ContextMenuPrimitive.Item
-          id="copy"
-          onPress={() => {
-            Alert.alert('Copy pressed');
-          }}
-        >
+        <ContextMenuPrimitive.Item id="copy" onPress={handleCopy}>
           <ContextMenuPrimitive.ItemTitle>{'Copy'}</ContextMenuPrimitive.ItemTitle>
           <ContextMenuPrimitive.ItemIcon ios="doc.on.doc" />
         </ContextMenuPrimitive.Item>
-        <ContextMenuPrimitive.Item
-          destructive
-          id="delete"
-          onPress={() => {
-            Alert.alert('Delete pressed');
-          }}
-        >
+        <ContextMenuPrimitive.Item destructive id="delete" onPress={handleDelete}>
           <ContextMenuPrimitive.ItemTitle>{'Delete'}</ContextMenuPrimitive.ItemTitle>
           <ContextMenuPrimitive.ItemIcon ios="trash" />
         </ContextMenuPrimitive.Item>
@@ -49,11 +55,5 @@ export const ContextMenu1 = () => {
 
 const { box, label } = StyleSheet.create({
   box: { paddingHorizontal: 28, paddingVertical: 14, borderRadius: 12, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
-  boxDark: { backgroundColor: '#1e1e1e', borderColor: 'rgba(255,255,255,0.12)' },
-  boxLight: { backgroundColor: '#ffffff', borderColor: 'rgba(0,0,0,0.08)' },
-  boxPressedDark: { backgroundColor: '#2a2a2a' },
-  boxPressedLight: { backgroundColor: '#e8e8e8' },
   label: { fontWeight: '500', fontSize: 15 },
-  labelDark: { color: 'rgba(255,255,255,0.85)' },
-  labelLight: { color: 'rgba(0,0,0,0.8)' },
 });
