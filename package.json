@@ -2,47 +2,6 @@
   "name": "@simonegauli/react-native-context-menu",
   "version": "0.5.0",
   "description": "Native context menus for React Native — built on Fabric with a composable slot-based API",
-  "main": "./lib/module/index.js",
-  "types": "./lib/typescript/src/index.d.ts",
-  "exports": {
-    ".": {
-      "source": "./src/index.tsx",
-      "types": "./lib/typescript/src/index.d.ts",
-      "default": "./lib/module/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "react-native.config.js",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
-  ],
-  "scripts": {
-    "example": "yarn workspace react-native-context-menu-example",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "prepare": "bob build",
-    "prepack": "bob build",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "test": "jest",
-    "update": "yarn upgrade-interactive",
-    "maestro": "node tools/maestro.ts",
-    "showcase": "node tools/showcase.ts",
-    "release": "node tools/release.ts"
-  },
   "keywords": [
     "react-native",
     "ios",
@@ -65,57 +24,135 @@
     "menu-actions",
     "destructive-action"
   ],
+  "homepage": "https://github.com/Pnlvfx/react-native-context-menu#readme",
+  "bugs": {
+    "url": "https://github.com/Pnlvfx/react-native-context-menu/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pnlvfx/react-native-context-menu.git"
   },
-  "author": "Simone Gauli <simonegauli@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Pnlvfx/react-native-context-menu/issues"
+  "author": "Simone Gauli <simonegauli@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "homepage": "https://github.com/Pnlvfx/react-native-context-menu#readme",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "workspaces": [
+    "example"
+  ],
+  "scripts": {
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "example": "yarn workspace react-native-context-menu-example",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "maestro": "node tools/maestro.ts",
+    "prepack": "bob build",
+    "prepare": "bob build",
+    "release": "node tools/release.ts",
+    "showcase": "node tools/showcase.ts",
+    "test": "jest",
+    "update": "yarn upgrade-interactive"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "jest": {
+    "preset": "@react-native/jest-preset",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ]
   },
   "dependencies": {
     "sf-symbols-typescript": "^2.2.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^21.0.2",
-    "@eslint/compat": "^2.1.0",
-    "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^10.0.1",
+    "@eslint/config-helpers": "^0.6.0",
+    "@goatjs/react-native-eslint": "^2.45.0",
+    "@goatjs/typescript-config": "^2.2.0",
     "@jest/globals": "^30.4.1",
-    "@react-native/babel-preset": "0.85.3",
-    "@react-native/eslint-config": "0.85.3",
-    "@react-native/jest-preset": "0.85.3",
-    "@types/react": "^19.2.16",
+    "@react-native/babel-preset": "0.86.0",
+    "@react-native/eslint-config": "0.86.0",
+    "@react-native/jest-preset": "0.86.0",
+    "@types/react": "^19.2.17",
     "babel-plugin-react-compiler": "0.0.0-experimental-a1856f3-20260507",
     "commitlint": "^21.0.2",
     "del-cli": "^7.0.0",
-    "eslint": "^9.39.4",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
+    "eslint": "^10.5.0",
     "execa": "^9.6.1",
     "jest": "^30.4.2",
     "lefthook": "^2.1.9",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "react": "19.2.3",
-    "react-native": "0.85.3",
-    "react-native-builder-bob": "^0.41.0",
-    "turbo": "^2.9.16",
+    "react-native": "0.86.0",
+    "react-native-builder-bob": "^0.42.1",
+    "turbo": "^2.9.18",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "react": ">=19.0.0",
     "react-native": "*"
   },
-  "workspaces": [
-    "example"
-  ],
-  "packageManager": "yarn@4.16.0+sha512.5374c94eb4ef6aa8188fb112f20c1aa6569f248d676c5e576e1fd2a1a4d8d87a96df65d9dfe1c2a0252cbe38bda46cf18d955005b81b43cc7607a5c9d56fd2b6",
+  "packageManager": "yarn@4.17.0+sha512.c2957de2f9025ab14d63b24d0d8be1f1655810e22c341042c27f7ecd017b180ec12db73d69ac366d71b304ef9f069349ce462de96f04f8f1da317f4f762c95ae",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "codegenConfig": {
+    "name": "ContextMenuViewSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.contextmenu"
+    },
+    "ios": {
+      "components": {
+        "ContextMenuView": {
+          "className": "ContextMenuView"
+        }
+      }
+    }
+  },
+  "create-react-native-library": {
+    "type": "fabric-view",
+    "languages": "kotlin-objc",
+    "tools": [
+      "eslint",
+      "jest",
+      "lefthook"
+    ],
+    "version": "0.62.0"
+  },
   "react-native-builder-bob": {
     "source": "src",
     "output": "lib",
@@ -134,49 +171,5 @@
         }
       ]
     ]
-  },
-  "codegenConfig": {
-    "name": "ContextMenuViewSpec",
-    "type": "all",
-    "jsSrcsDir": "src",
-    "android": {
-      "javaPackageName": "com.contextmenu"
-    },
-    "ios": {
-      "components": {
-        "ContextMenuView": {
-          "className": "ContextMenuView"
-        }
-      }
-    }
-  },
-  "prettier": {
-    "quoteProps": "consistent",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "es5",
-    "useTabs": false
-  },
-  "jest": {
-    "preset": "@react-native/jest-preset",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "create-react-native-library": {
-    "type": "fabric-view",
-    "languages": "kotlin-objc",
-    "tools": [
-      "eslint",
-      "jest",
-      "lefthook"
-    ],
-    "version": "0.62.0"
   }
 }

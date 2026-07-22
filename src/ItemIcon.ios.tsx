@@ -15,5 +15,6 @@ export const ItemIcon = ({ ios }: ContextMenuItemIconProps) => {
     };
   }, [ios, setIcon]);
 
+  // eslint-disable-next-line unicorn/no-useless-undefined
   return undefined;
 };

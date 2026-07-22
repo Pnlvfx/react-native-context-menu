@@ -1,31 +1,18 @@
 {
+  "extends": ["@goatjs/typescript-config/base/tsconfig.json"],
+  "include": ["babel.config.js", "src", "example", "eslint.config.js", "tools"],
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
       "@simonegauli/react-native-context-menu": ["./src/index"]
     },
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
     "customConditions": ["react-native-strict-api"],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "lib": ["ESNext"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "ESNext",
-    "verbatimModuleSyntax": true,
-    "types": ["node"]
+    "target": "ESNext"
   }
 }

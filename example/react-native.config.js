@@ -1,13 +1,13 @@
-const path = require('path');
-const pkg = require('../package.json');
+import path from 'node:path';
+import pkg from '../package.json' with { type: 'json' };
 
-module.exports = {
+export default {
   project: {
     ios: {},
   },
   dependencies: {
     [pkg.name]: {
-      root: path.join(__dirname, '..'),
+      root: path.join(import.meta.dirname, '..'),
       platforms: {
         // Codegen script incorrectly fails without this
         // So we explicitly specify the platforms with empty object

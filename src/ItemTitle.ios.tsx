@@ -6,7 +6,7 @@ export const ItemTitle = ({ children }: ContextMenuItemTitleProps) => {
   const { setTitle } = useContextMenuItem();
 
   if (typeof children !== 'string') {
-    throw new Error('ItemTitle children must be a string.');
+    throw new TypeError('ItemTitle children must be a string.');
   }
 
   useEffect(() => {
@@ -17,5 +17,6 @@ export const ItemTitle = ({ children }: ContextMenuItemTitleProps) => {
     };
   }, [children, setTitle]);
 
+  // eslint-disable-next-line unicorn/no-useless-undefined
   return undefined;
 };

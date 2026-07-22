@@ -1,8 +1,9 @@
-const path = require('path');
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-const { withMetroConfig } = require('react-native-monorepo-config');
+import path from 'node:path';
+import { getDefaultConfig, mergeConfig } from '@react-native/metro-config';
+/** @ts-expect-error idk man, ok. */
+import { withMetroConfig } from 'react-native-monorepo-config';
 
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(import.meta.dirname, '..');
 
 /**
  * Metro configuration
@@ -10,17 +11,16 @@ const root = path.resolve(__dirname, '..');
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = withMetroConfig(getDefaultConfig(__dirname), {
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+const config = withMetroConfig(getDefaultConfig(import.meta.dirname), {
   root,
-  dirname: __dirname,
+  dirname: import.meta.dirname,
+  resetCache: true,
 });
 
-module.exports = mergeConfig(config, {
-  resetCache: true,
+export default mergeConfig(config, {
   resolver: {
-    blockList: [
-      ...[config.resolver.blockList].flat().filter(Boolean),
-      new RegExp(`${path.resolve(root, 'media')}/.*`),
-    ],
+    // @ts-expect-error idk man, ok.
+    blockList: [...[config.resolver?.blockList].flat().filter(Boolean), new RegExp(`${path.resolve(root, 'media')}/.*`)],
   },
 });

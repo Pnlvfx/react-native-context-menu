@@ -1,8 +1,4 @@
-import {
-  type ViewProps,
-  type CodegenTypes,
-  codegenNativeComponent,
-} from 'react-native';
+import { type ViewProps, type CodegenTypes, codegenNativeComponent } from 'react-native';
 
 interface MenuItemPressEvent {
   readonly id: string;
@@ -17,7 +13,7 @@ export interface NativeContextMenuItem {
 }
 
 interface NativeProps extends ViewProps {
-  menuItems?: ReadonlyArray<NativeContextMenuItem>;
+  menuItems?: readonly NativeContextMenuItem[];
   onMenuItemPress?: CodegenTypes.DirectEventHandler<MenuItemPressEvent>;
 }
 

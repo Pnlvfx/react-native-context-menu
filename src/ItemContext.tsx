@@ -12,7 +12,6 @@ export const ItemContext = createContext<ItemCommands>({
 
 export const useContextMenuItem = () => {
   const context = use(ItemContext);
-  if (!context)
-    throw new Error('useCtxMenuItem must be used within ContextMenu.Item');
+  if (!context) throw new Error('useCtxMenuItem must be used within ContextMenu.Item');
   return context;
 };

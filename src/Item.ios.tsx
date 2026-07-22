@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react';
 import type { ContextMenuItemProps } from './Item';
 import { useContextMenu } from './ContextMenuContext';
 import { ItemContext } from './ItemContext';
+import { useEffect, useState } from 'react';
 
-export const Item = ({
-  id,
-  destructive = false,
-  disabled = false,
-  onPress,
-  children,
-}: ContextMenuItemProps) => {
+export const Item = ({ id, destructive = false, disabled = false, onPress, children }: ContextMenuItemProps) => {
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
   const { registerItem, unregisterItem } = useContextMenu();
@@ -27,16 +21,7 @@ export const Item = ({
     return () => {
       unregisterItem(id);
     };
-  }, [
-    id,
-    title,
-    destructive,
-    disabled,
-    icon,
-    registerItem,
-    unregisterItem,
-    onPress,
-  ]);
+  }, [id, title, destructive, disabled, icon, registerItem, unregisterItem, onPress]);
 
   return <ItemContext value={{ setTitle, setIcon }}>{children}</ItemContext>;
 };

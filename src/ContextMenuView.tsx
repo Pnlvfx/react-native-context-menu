@@ -5,7 +5,5 @@ interface Props extends ViewProps {
 }
 
 export function ContextMenuView(_props: Props): never {
-  throw new Error(
-    "'@simonegauli/react-native-context-menu' is only supported on native platforms."
-  );
+  throw new Error("'@simonegauli/react-native-context-menu' is only supported on native platforms.");
 }
