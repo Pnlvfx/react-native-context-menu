@@ -1,3 +1,11 @@
+## [0.6.0](compare/%40simonegauli%2Freact-native-context-menu%400.4.0...%40simonegauli%2Freact-native-context-menu%400.6.0) "@simonegauli/react-native-context-menu" (2026-09-20)
+
+### Bug Fixes
+
+* fuck you guys 7ae43df
+* missing compiled code on v0.4.0 a11af9f
+* **release:** add prepack 644de88
+
 ## 0.4.0 "@simonegauli/react-native-context-menu" (2026-06-06)
 
 ### Features

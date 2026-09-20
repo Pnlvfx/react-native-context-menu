@@ -1,6 +1,6 @@
 {
   "name": "@simonegauli/react-native-context-menu",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Native context menus for React Native — built on Fabric with a composable slot-based API",
   "keywords": [
     "react-native",
