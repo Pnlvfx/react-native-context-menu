@@ -70,15 +70,14 @@
   ],
   "scripts": {
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "example": "yarn workspace react-native-context-menu-example",
+    "example": "pnpm --filter react-native-context-menu-example",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "maestro": "node tools/maestro.ts",
+    "ncu": "pnpm update --interactive --latest --recursive",
     "prepack": "bob build",
     "prepare": "bob build",
-    "release": "node tools/release.ts",
     "showcase": "node tools/showcase.ts",
-    "test": "jest",
-    "update": "yarn upgrade-interactive"
+    "test": "jest"
   },
   "commitlint": {
     "extends": [
@@ -122,7 +121,7 @@
     "react": ">=19.0.0",
     "react-native": "*"
   },
-  "packageManager": "yarn@4.18.0+sha512.fcb8716fe7cd0eece141ffc18b92193a9df9204c1ba83189c288835223fc0bbe64af473bab0d5e9927a7daeb5caf2bb07eb2787cc9338ca040ea125f2a1f2f7e",
+  "packageManager": "pnpm@12.4.2",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"

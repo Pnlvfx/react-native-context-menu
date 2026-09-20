@@ -38,7 +38,7 @@ The old architecture (Paper) is **not** supported. Make sure `newArchEnabled=tru
 ## Installation
 
 ```bash
-yarn add @simonegauli/react-native-context-menu
+pnpm add @simonegauli/react-native-context-menu
 ```
 
 Then install the CocoaPods:
@@ -56,16 +56,13 @@ cd ios && pod install
 > **⚠️ Important:** React Native's built-in `Pressable` has a known press/long-press race condition — `onPress` may fire even when the user intends a long-press to open the context menu. Use [`react-native-gesture-handler`](https://docs.swmansion.com/react-native-gesture-handler/)'s `Pressable` instead, which correctly cancels the tap when a long-press is detected. Wrap your app (or at least the screen) in `GestureHandlerRootView`.
 
 ```bash
-yarn add react-native-gesture-handler
+pnpm add react-native-gesture-handler
 ```
 
 ```tsx
 import { StrictMode } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
-import {
-  GestureHandlerRootView,
-  Pressable,
-} from 'react-native-gesture-handler';
+import { GestureHandlerRootView, Pressable } from 'react-native-gesture-handler';
 import * as ContextMenu from '@simonegauli/react-native-context-menu';
 
 export default function App() {
@@ -75,33 +72,20 @@ export default function App() {
         <View style={styles.container}>
           <ContextMenu.Root>
             <ContextMenu.Trigger>
-              <Pressable
-                style={styles.box}
-                onPress={() => Alert.alert('Button pressed')}
-              >
+              <Pressable style={styles.box} onPress={() => Alert.alert('Button pressed')}>
                 <Text style={styles.label}>Tap or hold</Text>
               </Pressable>
             </ContextMenu.Trigger>
             <ContextMenu.Content>
-              <ContextMenu.Item
-                id="share"
-                onPress={() => Alert.alert('Share pressed')}
-              >
+              <ContextMenu.Item id="share" onPress={() => Alert.alert('Share pressed')}>
                 <ContextMenu.ItemTitle>Share</ContextMenu.ItemTitle>
                 <ContextMenu.ItemIcon ios="square.and.arrow.up" />
               </ContextMenu.Item>
-              <ContextMenu.Item
-                id="copy"
-                onPress={() => Alert.alert('Copy pressed')}
-              >
+              <ContextMenu.Item id="copy" onPress={() => Alert.alert('Copy pressed')}>
                 <ContextMenu.ItemTitle>Copy</ContextMenu.ItemTitle>
                 <ContextMenu.ItemIcon ios="doc.on.doc" />
               </ContextMenu.Item>
-              <ContextMenu.Item
-                id="delete"
-                destructive
-                onPress={() => Alert.alert('Delete pressed')}
-              >
+              <ContextMenu.Item id="delete" destructive onPress={() => Alert.alert('Delete pressed')}>
                 <ContextMenu.ItemTitle>Delete</ContextMenu.ItemTitle>
                 <ContextMenu.ItemIcon ios="trash" />
               </ContextMenu.Item>
