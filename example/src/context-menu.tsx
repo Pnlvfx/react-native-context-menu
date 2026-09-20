@@ -1,7 +1,7 @@
 /* eslint-disable goat-eslint/no-inline-styles */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as ContextMenuPrimitive from '@simonegauli/react-native-context-menu';
-import { Alert, Pressable, StyleSheet, Text, useColorScheme } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
 
 const handlePress = () => {
   Alert.alert('Button pressed');
@@ -19,6 +19,10 @@ const handleDelete = () => {
   Alert.alert('Delete pressed');
 };
 
+const handlePreviewPress = () => {
+  Alert.alert('Preview tapped');
+};
+
 export const ContextMenu1 = () => {
   const dark = useColorScheme() === 'dark';
 
@@ -29,13 +33,21 @@ export const ContextMenu1 = () => {
   ];
 
   return (
-    <ContextMenuPrimitive.Root>
+    <ContextMenuPrimitive.Root previewBorderRadius={12}>
       <ContextMenuPrimitive.Trigger>
         <Pressable onPress={handlePress} style={computed}>
           <Text style={[label, dark ? { color: 'rgba(255,255,255,0.85)' } : { color: 'rgba(0,0,0,0.8)' }]}>{'Hold me'}</Text>
         </Pressable>
       </ContextMenuPrimitive.Trigger>
       <ContextMenuPrimitive.Content>
+        <ContextMenuPrimitive.Preview borderRadius={12} onPress={handlePreviewPress}>
+          {() => (
+            <View style={preview}>
+              <Text style={previewTitle}>{'Preview card'}</Text>
+              <Text style={previewSub}>{'Tap to open'}</Text>
+            </View>
+          )}
+        </ContextMenuPrimitive.Preview>
         <ContextMenuPrimitive.Item id="share" onPress={handleShare}>
           <ContextMenuPrimitive.ItemTitle>{'Share'}</ContextMenuPrimitive.ItemTitle>
           <ContextMenuPrimitive.ItemIcon ios="square.and.arrow.up" />
@@ -53,7 +65,10 @@ export const ContextMenu1 = () => {
   );
 };
 
-const { box, label } = StyleSheet.create({
+const { box, label, preview, previewTitle, previewSub } = StyleSheet.create({
   box: { paddingHorizontal: 28, paddingVertical: 14, borderRadius: 12, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   label: { fontWeight: '500', fontSize: 15 },
+  preview: { width: 280, padding: 20, backgroundColor: '#f5f5f5', borderRadius: 12 },
+  previewTitle: { fontSize: 17, fontWeight: '600', color: '#000' },
+  previewSub: { fontSize: 13, color: '#666', marginTop: 4 },
 });
