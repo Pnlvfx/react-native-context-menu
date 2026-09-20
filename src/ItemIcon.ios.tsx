@@ -18,3 +18,5 @@ export const ItemIcon = ({ ios }: ContextMenuItemIconProps) => {
   // eslint-disable-next-line unicorn/no-useless-undefined
   return undefined;
 };
+
+ItemIcon.displayName = 'ContextMenu.ItemIcon';

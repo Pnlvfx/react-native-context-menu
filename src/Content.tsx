@@ -7,3 +7,5 @@ interface ContextMenuContentProps {
 export const Content = ({ children }: ContextMenuContentProps) => {
   return children;
 };
+
+Content.displayName = 'ContextMenu.Content';

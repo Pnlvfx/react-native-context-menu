@@ -25,6 +25,8 @@ export const Item = ({ id, destructive = false, disabled = false, onPress, child
   return <ItemContext value={{ setTitle, setIcon }}>{children}</ItemContext>;
 };
 
+Item.displayName = 'ContextMenu.Item';
+
 export const useContextMenuItem = () => {
   const context = use(ItemContext);
   if (!context) throw new Error('useContextMenuItem must be used within ContextMenu.Item');

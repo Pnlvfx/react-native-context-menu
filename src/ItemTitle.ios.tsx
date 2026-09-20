@@ -20,3 +20,5 @@ export const ItemTitle = ({ children }: ContextMenuItemTitleProps) => {
   // eslint-disable-next-line unicorn/no-useless-undefined
   return undefined;
 };
+
+ItemTitle.displayName = 'ContextMenu.ItemTitle';

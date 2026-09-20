@@ -7,3 +7,5 @@ export interface ContextMenuTriggerProps {
 export const Trigger = ({ children }: ContextMenuTriggerProps) => {
   return children;
 };
+
+Trigger.displayName = 'ContextMenu.Trigger';

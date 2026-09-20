@@ -54,6 +54,8 @@ export const Root = ({ children, style }: ContextMenuRootProps) => {
   );
 };
 
+Root.displayName = 'ContextMenu.Root';
+
 export const useContextMenu = () => {
   const context = use(Context);
   if (!context) throw new Error('useContextMenu must be used within ContextMenu.Root.');

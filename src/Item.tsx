@@ -9,3 +9,5 @@ export interface ContextMenuItemProps {
 }
 
 export const Item = ({ children }: ContextMenuItemProps) => children;
+
+Item.displayName = 'ContextMenu.Item';
