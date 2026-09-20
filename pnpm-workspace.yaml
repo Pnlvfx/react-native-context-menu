@@ -8,7 +8,6 @@ registries:
   https://europe-west8-npm.pkg.dev/open-gto-2/goat/:
     scopes:
       - '@goatjs'
-      - '@simonegauli'
 
 fetchRetries: 0
 
