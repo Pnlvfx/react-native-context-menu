@@ -8,6 +8,7 @@ const mediaDir = path.join('media');
 const outputFile = path.join(mediaDir, 'showcase.mp4');
 const gifFile = path.join(mediaDir, 'showcase.gif');
 
+// eslint-disable-next-line parallelize/no-sequential-await
 await fs.mkdir(mediaDir, { recursive: true });
 await execa('maestro', ['record', '--local', flowFile, outputFile], { stdio: 'inherit' });
 console.log(`Showcase saved to ${outputFile}`);
