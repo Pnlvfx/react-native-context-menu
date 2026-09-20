@@ -69,12 +69,12 @@
     "example"
   ],
   "scripts": {
+    "build": "bob build",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "example": "pnpm --filter react-native-context-menu-example",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "maestro": "node tools/maestro.ts",
     "ncu": "pnpm update --interactive --latest --recursive",
-    "prepack": "bob build",
     "prepare": "bob build",
     "showcase": "node tools/showcase.ts",
     "test": "jest"
