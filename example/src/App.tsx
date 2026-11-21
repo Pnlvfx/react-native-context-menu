@@ -3,6 +3,7 @@ import { StrictMode } from 'react';
 import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ContextMenu1 } from './context-menu';
+import { PreviewMenu } from './preview-menu';
 
 const App = () => {
   const scheme = useColorScheme();
@@ -15,6 +16,7 @@ const App = () => {
           <Text style={[heading, { color: dark ? '#ffffff' : '#0f0f0f' }]}>{'react-native-context-menu'}</Text>
           <Text style={[subheading, { color: dark ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)' }]}>{'thanks for being here'}</Text>
           <ContextMenu1 />
+          <PreviewMenu />
         </View>
       </GestureHandlerRootView>
     </StrictMode>

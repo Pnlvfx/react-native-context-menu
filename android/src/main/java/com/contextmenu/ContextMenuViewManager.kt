@@ -23,6 +23,8 @@ internal class ContextMenuViewManager : SimpleViewManager<ContextMenuView>(),
 
   override fun setMenuItems(view: ContextMenuView?, value: ReadableArray?) = Unit
 
+  override fun setHasPreview(view: ContextMenuView?, value: Boolean) = Unit
+
   companion object {
     const val NAME = "ContextMenuView"
   }

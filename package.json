@@ -140,6 +140,9 @@
       "components": {
         "ContextMenuView": {
           "className": "ContextMenuView"
+        },
+        "ContextMenuPreviewView": {
+          "className": "ContextMenuPreviewView"
         }
       }
     }

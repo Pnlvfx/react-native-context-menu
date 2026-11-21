@@ -1,4 +1,5 @@
 #import "ContextMenuView.h"
+#import "ContextMenuPreviewView.h"
 
 #import <react/renderer/components/ContextMenuViewSpec/ComponentDescriptors.h>
 #import <react/renderer/components/ContextMenuViewSpec/EventEmitters.h>
@@ -12,6 +13,9 @@ using namespace facebook::react;
 @implementation ContextMenuView {
   UIContextMenuInteraction *_interaction;
   std::vector<ContextMenuViewMenuItemsStruct> _menuItems;
+  BOOL _hasPreview;
+  ContextMenuPreviewView *_previewView;
+  UIViewController *_previewController;
 }
 
 + (ComponentDescriptorProvider)componentDescriptorProvider
@@ -34,7 +38,84 @@ using namespace facebook::react;
 {
   const auto &newProps = *std::static_pointer_cast<ContextMenuViewProps const>(props);
   _menuItems = newProps.menuItems;
+  _hasPreview = newProps.hasPreview;
   [super updateProps:props oldProps:oldProps];
+}
+
+- (void)prepareForRecycle
+{
+  [super prepareForRecycle];
+  _hasPreview = NO;
+  _previewView = nil;
+  _previewController = nil;
+}
+
+#pragma mark - Preview hosting
+
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)childComponentView index:(NSInteger)index
+{
+  if (![childComponentView isKindOfClass:ContextMenuPreviewView.class]) {
+    [super mountChildComponentView:childComponentView index:index];
+    return;
+  }
+
+  __weak ContextMenuView *weakSelf = self;
+  _previewView = (ContextMenuPreviewView *)childComponentView;
+  _previewView.onPreferredSizeChange = ^{
+    [weakSelf syncPreviewController];
+  };
+  [self syncPreviewController];
+}
+
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)childComponentView index:(NSInteger)index
+{
+  if (childComponentView != _previewView) {
+    [super unmountChildComponentView:childComponentView index:index];
+    return;
+  }
+
+  [_previewView removeFromSuperview];
+  _previewView.onPreferredSizeChange = nil;
+  _previewView = nil;
+}
+
+- (void)syncPreviewController
+{
+  if (!_previewController || !_previewView) return;
+
+  if (_previewView.superview != _previewController.view) {
+    [_previewController.view addSubview:_previewView];
+  }
+
+  CGSize size = _previewView.preferredSize;
+  if (size.width <= 0 || size.height <= 0) return;
+
+  void (^applySize)(void) = ^{
+    self->_previewController.preferredContentSize = size;
+  };
+
+  if (_previewView.isResizeAnimated) {
+    applySize();
+  } else {
+    [UIView performWithoutAnimation:applySize];
+  }
+}
+
+- (UIViewController *)makePreviewController
+{
+  UIViewController *controller = [[UIViewController alloc] init];
+  controller.view.backgroundColor = UIColor.clearColor;
+  controller.view.clipsToBounds = YES;
+  _previewController = controller;
+  [self syncPreviewController];
+  return controller;
+}
+
+#pragma mark - Events
+
+- (std::shared_ptr<const ContextMenuViewEventEmitter>)typedEventEmitter
+{
+  return std::dynamic_pointer_cast<const ContextMenuViewEventEmitter>(_eventEmitter);
 }
 
 #pragma mark - UIContextMenuInteractionDelegate
@@ -45,8 +126,19 @@ using namespace facebook::react;
   __weak ContextMenuView *weakSelf = self;
   std::vector<ContextMenuViewMenuItemsStruct> itemsCopy = _menuItems;
 
+  if (auto eventEmitter = [self typedEventEmitter]) {
+    eventEmitter->onMenuWillCreate({});
+  }
+
+  UIContextMenuContentPreviewProvider previewProvider = nil;
+  if (_hasPreview) {
+    previewProvider = ^UIViewController * _Nullable {
+      return [weakSelf makePreviewController];
+    };
+  }
+
   return [UIContextMenuConfiguration configurationWithIdentifier:nil
-                                                 previewProvider:nil
+                                                 previewProvider:previewProvider
                                                   actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> * _Nonnull suggestedActions) {
     NSMutableArray<UIAction *> *actions = [NSMutableArray array];
 
@@ -69,8 +161,7 @@ using namespace facebook::react;
                                           handler:^(__kindof UIAction * _Nonnull a) {
         ContextMenuView *strongSelf = weakSelf;
         if (!strongSelf) return;
-        auto eventEmitter = std::dynamic_pointer_cast<const ContextMenuViewEventEmitter>(strongSelf->_eventEmitter);
-        if (eventEmitter) {
+        if (auto eventEmitter = [strongSelf typedEventEmitter]) {
           ContextMenuViewEventEmitter::OnMenuItemPress event;
           event.id = std::string([itemId UTF8String]);
           eventEmitter->onMenuItemPress(event);
@@ -88,12 +179,42 @@ using namespace facebook::react;
        willDisplayMenuForConfiguration:(UIContextMenuConfiguration *)configuration
                          animator:(id<UIContextMenuInteractionAnimating>)animator
 {
+  if (auto eventEmitter = [self typedEventEmitter]) {
+    eventEmitter->onMenuWillShow({});
+  }
 }
 
 - (void)contextMenuInteraction:(UIContextMenuInteraction *)interaction
        willEndForConfiguration:(UIContextMenuConfiguration *)configuration
                       animator:(id<UIContextMenuInteractionAnimating>)animator
 {
+  if (auto eventEmitter = [self typedEventEmitter]) {
+    eventEmitter->onMenuWillHide({});
+  }
+
+  __weak ContextMenuView *weakSelf = self;
+  [animator addCompletion:^{
+    ContextMenuView *strongSelf = weakSelf;
+    if (!strongSelf) return;
+    strongSelf->_previewController = nil;
+    [strongSelf->_previewView removeFromSuperview];
+    if (auto eventEmitter = [strongSelf typedEventEmitter]) {
+      eventEmitter->onMenuDidHide({});
+    }
+  }];
+}
+
+- (void)contextMenuInteraction:(UIContextMenuInteraction *)interaction
+       willPerformPreviewActionForMenuWithConfiguration:(UIContextMenuConfiguration *)configuration
+                         animator:(id<UIContextMenuInteractionCommitAnimating>)animator
+{
+  if (_previewView) {
+    animator.preferredCommitStyle = _previewView.preferredCommitStyle;
+  }
+
+  if (auto eventEmitter = [self typedEventEmitter]) {
+    eventEmitter->onPreviewPress({});
+  }
 }
 
 @end

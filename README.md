@@ -131,6 +131,8 @@ Wraps the context-menu interaction. Must contain one `Trigger` and one `Content`
 | ---------- | ---------------------- | -------- | ----------------------------------------- |
 | `children` | `ReactNode`            | Yes      | Must include a `Trigger` and a `Content`  |
 | `style`    | `StyleProp<ViewStyle>` | No       | Styles applied to the native wrapper view |
+| `onMenuWillShow` | `() => void`     | No       | Called right before the menu appears (iOS) |
+| `onMenuWillHide` | `() => void`     | No       | Called right before the menu is dismissed (iOS) |
 
 ### `ContextMenu.Trigger`
 
@@ -149,6 +151,31 @@ Declares the menu items. Only renders `Item` components — other children are a
 | Prop       | Type        | Required | Description                             |
 | ---------- | ----------- | -------- | --------------------------------------- |
 | `children` | `ReactNode` | Yes      | One or more `ContextMenu.Item` elements |
+
+### `ContextMenu.Preview`
+
+Renders a custom React preview above the menu (iOS only). Place it inside `Content`. The child **must be a function**: the preview is mounted lazily when the menu is about to open and unmounted after it hides, so it costs nothing while the menu is closed.
+
+```tsx
+<ContextMenu.Content>
+  <ContextMenu.Preview borderRadius={16} onPress={() => Alert.alert('Preview pressed')}>
+    {() => <MyPreview />}
+  </ContextMenu.Preview>
+  {/* items */}
+</ContextMenu.Content>
+```
+
+The preview size is measured from the rendered content. Pass `size` to override it.
+
+| Prop                   | Type                                | Default     | Description                                                         |
+| ---------------------- | ----------------------------------- | ----------- | ------------------------------------------------------------------- |
+| `children`             | `() => ReactNode`                   | — (required) | Render function for the preview content                             |
+| `size`                 | `{ width: number; height: number }` | measured    | Overrides the measured preview size                                 |
+| `backgroundColor`      | `ColorValue`                        | `undefined` | Background of the preview container                                 |
+| `borderRadius`         | `number`                            | `undefined` | Corner radius of the preview container                              |
+| `preferredCommitStyle` | `'pop' \| 'dismiss'`                | `'pop'`     | How the menu transitions when the user taps the preview             |
+| `isResizeAnimated`     | `boolean`                           | `true`      | Animates the preview when its content size changes                  |
+| `onPress`              | `() => void`                        | `undefined` | Called when the user taps the preview to commit                     |
 
 ### `ContextMenu.Item`
 
@@ -186,12 +213,13 @@ Attaches an icon to the parent `Item`. Must be a direct child of `Item`. Uses ty
 What’s coming. Ordered roughly by priority — open an issue if you’d like to see something bumped up.
 
 - [ ] **Item subtitle** — `subtitle` prop to show a secondary line under each item
-- [ ] **Item customisation parity** — bring feature parity with similar packages such as [zeego](https://github.com/nandorojo/zeego) (inline previews, sub-menus, toggle / stateful items, custom preview providers)
+- [ ] **Item customisation parity** — bring feature parity with similar packages such as [zeego](https://github.com/nandorojo/zeego) (sub-menus, toggle / stateful items)
 - [ ] **Android support** — replace the current throw with a real Android `PopupMenu` / `FloatingToolbar` implementation
 - [ ] **Web support** — replace the current throw with a working HTML/CSS context menu (native `onContextMenu` or custom overlay)
 - [ ] **Platform stubs** — render `children` gracefully on unsupported platforms instead of throwing
 - [ ] **Expo config plugin** — auto-link for managed Expo + CNG setups
-- [ ] **Menu lifecycle callbacks** — `onMenuWillShow`, `onMenuWillHide` events
+- [x] **Menu lifecycle callbacks** — `onMenuWillShow`, `onMenuWillHide` events
+- [x] **Custom previews** — `ContextMenu.Preview` with lazy mounting (iOS)
 - [ ] **Dynamic items** — update menu contents at runtime without unmounting
 
 ---

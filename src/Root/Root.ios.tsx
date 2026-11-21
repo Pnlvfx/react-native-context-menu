@@ -1,10 +1,14 @@
 import type { ContextMenuRootProps } from './Root';
+import type { ContextMenuPreviewProps } from '../Preview/Preview';
 import ContextMenuNativeView, { type NativeContextMenuItem } from '../native/ContextMenuViewNativeComponent';
 import { useRef, useState } from 'react';
+import { PreviewHost } from '../Preview/PreviewHost';
 import { RootContext, type RegisteredItem } from './RootContext';
 
-export const Root = ({ children, style }: ContextMenuRootProps) => {
+export const Root = ({ children, style, onMenuWillShow, onMenuWillHide }: ContextMenuRootProps) => {
   const [nativeItems, setNativeItems] = useState<NativeContextMenuItem[]>([]);
+  const [preview, setPreview] = useState<ContextMenuPreviewProps | undefined>();
+  const [isMenuActive, setIsMenuActive] = useState(false);
   const handlersRef = useRef<Map<string, () => void>>(new Map());
 
   const registerItem = ({ onPress, id, title, destructive, disabled, systemImage }: RegisteredItem) => {
@@ -30,14 +34,53 @@ export const Root = ({ children, style }: ContextMenuRootProps) => {
     }
   };
 
+  const registerPreview = (nextPreview: ContextMenuPreviewProps) => {
+    setPreview(nextPreview);
+  };
+
+  const unregisterPreview = () => {
+    setPreview(undefined);
+  };
+
   const handleMenuItemPress = (event: { nativeEvent: { id: string } }) => {
     handlersRef.current.get(event.nativeEvent.id)?.();
   };
 
+  const handleMenuWillCreate = () => {
+    setIsMenuActive(true);
+  };
+
+  const handleMenuDidHide = () => {
+    setIsMenuActive(false);
+  };
+
+  const handleMenuWillShow = () => {
+    onMenuWillShow?.();
+  };
+
+  const handleMenuWillHide = () => {
+    onMenuWillHide?.();
+  };
+
+  const handlePreviewPress = () => {
+    preview?.onPress?.();
+  };
+
   return (
-    <RootContext value={{ registerItem, unregisterItem, updateHandler }}>
-      <ContextMenuNativeView menuItems={nativeItems} onMenuItemPress={handleMenuItemPress} style={style}>
+    <RootContext value={{ registerItem, unregisterItem, updateHandler, registerPreview, unregisterPreview }}>
+      <ContextMenuNativeView
+        hasPreview={preview !== undefined}
+        menuItems={nativeItems}
+        onMenuDidHide={handleMenuDidHide}
+        onMenuItemPress={handleMenuItemPress}
+        onMenuWillCreate={handleMenuWillCreate}
+        onMenuWillHide={handleMenuWillHide}
+        onMenuWillShow={handleMenuWillShow}
+        onPreviewPress={handlePreviewPress}
+        style={style}
+      >
         {children}
+        {isMenuActive && preview !== undefined ? <PreviewHost {...preview} /> : undefined}
       </ContextMenuNativeView>
     </RootContext>
   );

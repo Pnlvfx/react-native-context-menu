@@ -8,7 +8,7 @@ import com.facebook.react.uimanager.ViewManager
 
 class ContextMenuViewPackage : BaseReactPackage() {
   override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
-    return listOf(ContextMenuViewManager())
+    return listOf(ContextMenuViewManager(), ContextMenuPreviewViewManager())
   }
 
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? = null

@@ -1,0 +1,27 @@
+appId: contextmenu.example
+---
+- launchApp:
+    clearState: true
+
+# Preview trigger shows on screen, menu starts closed
+- assertVisible: "Hold me for a preview \\(closed\\)"
+
+# Long press opens the menu with the custom preview mounted
+- longPressOn: "Hold me for a preview \\(closed\\)"
+- assertVisible: "Preview"
+- assertVisible: "Share"
+
+# Picking an item still works while a preview is shown
+- tapOn: "Share"
+- assertVisible: "Share pressed"
+- tapOn: "OK"
+
+# onMenuWillHide fired, so the status label is back to closed
+- assertVisible: "Hold me for a preview \\(closed\\)"
+
+# Preview is mounted again on the next open, then tapping it commits
+- longPressOn: "Hold me for a preview \\(closed\\)"
+- assertVisible: "Preview"
+- tapOn: "Preview"
+- assertVisible: "Preview pressed"
+- tapOn: "OK"
