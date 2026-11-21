@@ -1,6 +1,8 @@
 import { execa } from 'execa';
+import { homedir } from 'node:os';
+import path from 'node:path';
 
-const rootDir = '/Users/simonegauli/Desktop/packages/react-native-context-menu';
+const rootDir = path.join(homedir(), 'Desktop', 'packages', 'react-native-context-menu');
 const exampleDir = `${rootDir}/example`;
 
 // Reset watchman for root
