@@ -25,14 +25,14 @@ export const ContextMenu1 = () => {
   const computed = ({ pressed }: { pressed: boolean }) => [
     box,
     dark ? { backgroundColor: '#1e1e1e', borderColor: 'rgba(255,255,255,0.12)' } : { backgroundColor: '#ffffff', borderColor: 'rgba(0,0,0,0.08)' },
-    pressed && (dark ? { backgroundColor: '#2a2a2a' } : { backgroundColor: '#e8e8e8' }),
+    pressed && { backgroundColor: dark ? '#2a2a2a' : '#e8e8e8' },
   ];
 
   return (
     <ContextMenuPrimitive.Root>
       <ContextMenuPrimitive.Trigger>
         <Pressable onPress={handlePress} style={computed}>
-          <Text style={[label, dark ? { color: 'rgba(255,255,255,0.85)' } : { color: 'rgba(0,0,0,0.8)' }]}>{'Hold me'}</Text>
+          <Text style={[label, { color: dark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.8)' }]}>{'Hold me'}</Text>
         </Pressable>
       </ContextMenuPrimitive.Trigger>
       <ContextMenuPrimitive.Content>
