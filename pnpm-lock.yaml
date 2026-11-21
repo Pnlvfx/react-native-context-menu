@@ -179,6 +179,9 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0
     devDependencies:
+      '@babel/runtime':
+        specifier: ^7.29.7
+        version: 7.29.7
       '@commitlint/config-conventional':
         specifier: ^21.2.4
         version: 21.2.4

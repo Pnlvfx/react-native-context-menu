@@ -1,7 +1,7 @@
 {
   "name": "@simonegauli/react-native-context-menu",
   "version": "0.7.0",
-  "description": "Native context menus for React Native — built on Fabric with a composable slot-based API",
+  "description": "Native context menus for React Native, built on Fabric with a composable slot-based API",
   "keywords": [
     "react-native",
     "ios",
@@ -38,7 +38,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "source": "./src/index.tsx",
+      "source": "./src/index.ts",
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
@@ -72,7 +72,7 @@
     "build": "bob build",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "example": "pnpm --filter react-native-context-menu-example",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint": "eslint",
     "maestro": "node tools/maestro.ts",
     "ncu": "pnpm update --interactive --latest --recursive",
     "prepare": "bob build",
@@ -95,6 +95,7 @@
     "sf-symbols-typescript": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.29.7",
     "@commitlint/config-conventional": "^21.2.4",
     "@eslint/config-helpers": "^0.7.0",
     "@goatjs/dbz": "^2.102.0",
