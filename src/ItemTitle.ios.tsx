@@ -1,4 +1,4 @@
-import { useContextMenuItem } from './Item.ios';
+import { useContextMenuItem } from './ItemContext';
 import type { ContextMenuItemTitleProps } from './ItemTitle';
 import { useEffect } from 'react';
 

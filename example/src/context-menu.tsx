@@ -1,5 +1,5 @@
 /* eslint-disable goat-eslint/no-inline-styles */
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import-x/no-extraneous-dependencies
 import * as ContextMenuPrimitive from '@simonegauli/react-native-context-menu';
 import { Alert, Pressable, StyleSheet, Text, useColorScheme } from 'react-native';
 

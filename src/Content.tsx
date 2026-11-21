@@ -4,8 +4,6 @@ interface ContextMenuContentProps {
   readonly children: ReactNode;
 }
 
-export const Content = ({ children }: ContextMenuContentProps) => {
-  return children;
-};
+export const Content = ({ children }: ContextMenuContentProps) => children;
 
 Content.displayName = 'ContextMenu.Content';

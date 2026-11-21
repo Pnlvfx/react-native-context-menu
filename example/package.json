@@ -2,18 +2,20 @@
   "name": "react-native-context-menu-example",
   "version": "0.0.1",
   "private": true,
+  "description": "Context Menu Example",
+  "type": "module",
   "scripts": {
     "android": "react-native run-android",
     "build:android": "react-native build-android --extra-params \"--no-daemon --console=plain -PreactNativeArchitectures=arm64-v8a\"",
     "build:ios": "react-native build-ios --mode Debug",
     "ios": "react-native run-ios",
-    "pod": "cd ios && pod install",
+    "pod": "rm -rf ios/.xcode.env.local && cd ios && pod install",
     "start": "node tools/metro.ts"
   },
   "dependencies": {
     "react": "19.2.3",
     "react-native": "0.86.2",
-    "react-native-gesture-handler": "^3.2.0"
+    "react-native-gesture-handler": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -28,7 +30,7 @@
     "@react-native/typescript-config": "0.86.2",
     "@types/react": "^19.2.18",
     "babel-plugin-react-compiler": "0.0.0-experimental-a1856f3-20260507",
-    "execa": "^10.0.1",
+    "execa": "^10.2.1",
     "react-native-builder-bob": "^0.43.0",
     "react-native-monorepo-config": "^0.4.0"
   },
