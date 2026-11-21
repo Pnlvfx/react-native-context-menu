@@ -1,4 +1,4 @@
-import { useContextMenuItem } from './ItemContext';
+import { useContextMenuItem } from '../Item/ItemContext';
 import type { ContextMenuItemIconProps } from './ItemIcon';
 import { useEffect } from 'react';
 

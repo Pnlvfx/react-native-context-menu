@@ -1,5 +1,5 @@
 import type { ContextMenuRootProps } from './Root';
-import ContextMenuNativeView, { type NativeContextMenuItem } from './ContextMenuViewNativeComponent';
+import ContextMenuNativeView, { type NativeContextMenuItem } from '../native/ContextMenuViewNativeComponent';
 import { useRef, useState } from 'react';
 import { RootContext, type RegisteredItem } from './RootContext';
 

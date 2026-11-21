@@ -1,5 +1,5 @@
 import { createContext, use } from 'react';
-import type { NativeContextMenuItem } from './ContextMenuViewNativeComponent';
+import type { NativeContextMenuItem } from '../native/ContextMenuViewNativeComponent';
 
 export type RegisteredItem = NativeContextMenuItem & {
   onPress: (() => void) | undefined;

@@ -1,6 +1,6 @@
 import type { ContextMenuItemProps } from './Item';
 import { useEffect, useState } from 'react';
-import { useContextMenu } from './RootContext';
+import { useContextMenu } from '../Root/RootContext';
 import { ItemContext } from './ItemContext';
 
 export const Item = ({ id, destructive = false, disabled = false, onPress, children }: ContextMenuItemProps) => {
