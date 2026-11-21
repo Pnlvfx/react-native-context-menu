@@ -1,3 +1,16 @@
+## [0.8.0](compare/%40simonegauli%2Freact-native-context-menu%400.7.0...%40simonegauli%2Freact-native-context-menu%400.8.0) "@simonegauli/react-native-context-menu" (2026-11-21)
+
+### Features
+
+* add preview support 132166f
+
+### Bug Fixes
+
+* add @babel/runtime to root devDependencies 3f6b5c9
+* **example:** simplify ternaries in context-menu 491b376
+* fix all new lint rules b3bff37
+* metro script 41e5839
+
 ## [0.7.0](compare/%40simonegauli%2Freact-native-context-menu%400.6.0...%40simonegauli%2Freact-native-context-menu%400.7.0) "@simonegauli/react-native-context-menu" (2026-09-20)
 
 ## [0.6.0](compare/%40simonegauli%2Freact-native-context-menu%400.4.0...%40simonegauli%2Freact-native-context-menu%400.6.0) "@simonegauli/react-native-context-menu" (2026-09-20)
